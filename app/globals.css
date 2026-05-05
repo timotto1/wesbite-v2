@@ -1,0 +1,331 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: #f6f5f6;
+  --paper-panel: #f2f2ec;
+  --paper-card: #ffffff;
+  --ink: #26045d;
+  --ink-muted: #4a4851;
+  --ink-light: #9094a0;
+  --stairpay: #26045d;
+  --stairpay-soft: #f0ebf8;
+  --rule: #e5e5dd;
+  --rule-grid: #f4f4ee;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  ::selection {
+    background: #26045d;
+    color: #f6f5f6;
+  }
+
+  /* Default focus-visible treatment — every interactive element. */
+  :focus-visible {
+    outline: 2px solid var(--stairpay);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  /* Skip link — visible only when focused via keyboard. */
+  .skip-to-content {
+    @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-ink focus:px-4 focus:py-2 focus:text-paper;
+  }
+
+  /* Section/layout horizontal padding — single source of truth.
+     Tweak here to retune the breathing room inside the framing rules. */
+  .px-section {
+    @apply px-6 md:px-12;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────
+   Motion system
+   - Default: subtle fade + rise on viewport entry.
+   - prefers-reduced-motion: disable transforms, reduce duration.
+   ─────────────────────────────────────────────────────────── */
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .reveal[data-reveal="in"] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .stagger > * {
+    transition-delay: calc(var(--stagger-delay, 80ms) * var(--stagger-index, 0));
+  }
+
+  /* Marquee for the trusted-by logo strip — slow, subtle, paused on hover. */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    animation: marquee 60s linear infinite;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  /* Counter-rotating concept rings. */
+  @keyframes ring-spin-cw {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  @keyframes ring-spin-ccw {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(-360deg); }
+  }
+  .ring-spin-cw {
+    animation: ring-spin-cw 28s linear infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+  .ring-spin-ccw {
+    animation: ring-spin-ccw 22s linear infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  /* Pulse for highlighted nodes inside illustrations. */
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.85; transform: scale(1.04); }
+  }
+  .glow-pulse {
+    animation: glow-pulse 2.6s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  /* Dashed-arrow flow used in diagrams. */
+  @keyframes dash-flow {
+    to { stroke-dashoffset: -32; }
+  }
+  .dash-flow {
+    stroke-dasharray: 4 6;
+    animation: dash-flow 1.6s linear infinite;
+  }
+
+  /* Counter — hides "to" value until JS swaps it. */
+  .counter[data-stage="hidden"] { opacity: 0; }
+  .counter[data-stage="shown"]  { opacity: 1; transition: opacity 600ms ease; }
+
+  /* Comms-preview typing animation — blinking cursor at the typing
+     caret, three pulsing dots while the assistant "thinks", and a
+     fade-out at the end of each cycle. */
+  @keyframes comms-cursor {
+    0%, 49%   { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+  .animate-comms-cursor {
+    animation: comms-cursor 1s step-end infinite;
+  }
+  @keyframes comms-dot {
+    0%, 80%, 100% { opacity: 0.25; transform: scale(0.85); }
+    40%           { opacity: 1;    transform: scale(1); }
+  }
+  .animate-comms-dot {
+    animation: comms-dot 1.2s ease-in-out infinite;
+  }
+  @keyframes comms-exit-fade {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+  }
+  .animate-comms-exit-fade {
+    animation: comms-exit-fade 500ms ease-out forwards;
+  }
+
+  /* Compliance-preview swap — outgoing fades out first, then a short pause,
+     then the incoming fades in. Pulse subtly compresses the card during
+     the swap so the change feels like a press. */
+  @keyframes compliance-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes compliance-fade-out {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+  }
+  .animate-compliance-fade-out {
+    animation: compliance-fade-out 450ms ease-in both;
+  }
+  .animate-compliance-fade-in {
+    animation: compliance-fade-in 500ms ease-out 600ms both;
+  }
+  @keyframes compliance-card-pulse {
+    0%   { transform: scale(1); }
+    32%  { transform: scale(0.984); }
+    100% { transform: scale(1); }
+  }
+  .animate-compliance-card-pulse {
+    animation: compliance-card-pulse 1100ms cubic-bezier(0.4, 0, 0.4, 1) both;
+  }
+
+  /* Listing-preview swap — outgoing slides off in one direction while
+     incoming slides in from the opposite, so they replace each other with
+     no whitespace gap. */
+  @keyframes listing-slide-out-x {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-100%); }
+  }
+  @keyframes listing-slide-in-x {
+    from { transform: translateX(100%); }
+    to   { transform: translateX(0); }
+  }
+  @keyframes listing-slide-out-y {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-100%); }
+  }
+  @keyframes listing-slide-in-y {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+  }
+  .animate-listing-slide-out-x,
+  .animate-listing-slide-in-x,
+  .animate-listing-slide-out-y,
+  .animate-listing-slide-in-y {
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+  .animate-listing-slide-out-x {
+    animation: listing-slide-out-x 1200ms cubic-bezier(0.32, 0.72, 0, 1) both;
+  }
+  .animate-listing-slide-in-x {
+    animation: listing-slide-in-x 1200ms cubic-bezier(0.32, 0.72, 0, 1) both;
+  }
+  .animate-listing-slide-out-y {
+    animation: listing-slide-out-y 1200ms cubic-bezier(0.32, 0.72, 0, 1) both;
+  }
+  .animate-listing-slide-in-y {
+    animation: listing-slide-in-y 1200ms cubic-bezier(0.32, 0.72, 0, 1) both;
+  }
+
+
+  /* Per-card abstract gradient bloom backgrounds. Each leaves the top-left
+     white so the eyebrow + heading remain legible, and concentrates 2–5
+     organic shapes toward the bottom/right of the card. */
+
+  .card-bg-listings {
+    background-color: #FFFFFF;
+    background-image:
+      radial-gradient(60% 70% at 100% 100%, rgba(180, 125, 244, 0.95), transparent 72%),
+      radial-gradient(85% 45% at 55% 115%, rgba(196, 150, 245, 0.85), transparent 68%),
+      radial-gradient(40% 90% at 105% 55%, rgba(208, 175, 248, 0.7), transparent 72%),
+      radial-gradient(55% 35% at 85% 5%, rgba(218, 200, 250, 0.45), transparent 75%);
+  }
+
+  .card-bg-resident-portal {
+    background-color: #FFFFFF;
+    background-image:
+      radial-gradient(70% 75% at 100% 100%, rgba(255, 180, 210, 0.85), transparent 70%),
+      radial-gradient(55% 50% at 70% 110%, rgba(255, 200, 180, 0.75), transparent 72%),
+      radial-gradient(40% 60% at 105% 55%, rgba(218, 200, 250, 0.6), transparent 75%);
+  }
+
+  .card-bg-comms {
+    background-color: #FFFFFF;
+    background-image:
+      radial-gradient(80% 70% at 100% 100%, rgba(174, 120, 241, 0.8), transparent 70%),
+      radial-gradient(45% 55% at 85% 50%, rgba(213, 194, 255, 0.7), transparent 75%),
+      radial-gradient(50% 40% at 60% 110%, rgba(208, 175, 248, 0.6), transparent 75%),
+      radial-gradient(35% 30% at 100% 0%, rgba(218, 200, 250, 0.45), transparent 78%);
+  }
+
+  .card-bg-compliance {
+    background-color: #FFFFFF;
+    background-image:
+      radial-gradient(65% 70% at 100% 100%, rgba(170, 200, 255, 0.85), transparent 70%),
+      radial-gradient(45% 55% at 75% 80%, rgba(174, 120, 241, 0.6), transparent 75%),
+      radial-gradient(40% 45% at 105% 45%, rgba(213, 194, 255, 0.7), transparent 75%),
+      radial-gradient(35% 35% at 55% 110%, rgba(196, 150, 245, 0.5), transparent 78%);
+  }
+
+  .card-bg-finance {
+    background-color: #FFFFFF;
+    background-image:
+      radial-gradient(70% 75% at 100% 100%, rgba(218, 200, 250, 0.9), transparent 70%),
+      radial-gradient(50% 55% at 70% 95%, rgba(255, 180, 210, 0.65), transparent 72%),
+      radial-gradient(40% 45% at 105% 55%, rgba(174, 120, 241, 0.55), transparent 75%);
+  }
+
+  .card-bg-aftersales {
+    background-color: #FFFFFF;
+    background-image:
+      radial-gradient(40% 80% at 100% 100%, rgba(180, 125, 244, 0.85), transparent 70%),
+      radial-gradient(30% 55% at 78% 95%, rgba(213, 194, 255, 0.7), transparent 72%),
+      radial-gradient(28% 65% at 102% 50%, rgba(170, 200, 255, 0.6), transparent 75%),
+      radial-gradient(35% 40% at 60% 115%, rgba(255, 180, 210, 0.55), transparent 75%),
+      radial-gradient(20% 35% at 88% 0%, rgba(218, 200, 250, 0.4), transparent 80%);
+  }
+
+  /* Security card — solid white. */
+  .security-card {
+    background-color: #FFFFFF;
+  }
+
+  /* Gradient stroke that fades in on hover — uses a masked pseudo-element so
+     the gradient renders only on the border, not behind the content. */
+  .gradient-stroke {
+    position: relative;
+  }
+  .gradient-stroke::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: linear-gradient(135deg, #E5DAFB, #AE78F1, #7114E2, #4E00CC, #26045D);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 250ms ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .gradient-stroke:hover::after {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .marquee-track { animation: none; }
+  .glow-pulse { animation: none; opacity: 0.7; }
+  .ring-spin-cw, .ring-spin-ccw { animation: none; }
+  .dash-flow { animation: none; }
+  .animate-listing-slide-out-x,
+  .animate-listing-slide-in-x,
+  .animate-listing-slide-out-y,
+  .animate-listing-slide-in-y { animation: none; }
+  .animate-compliance-fade-in,
+  .animate-compliance-fade-out,
+  .animate-compliance-card-pulse,
+  .animate-comms-cursor,
+  .animate-comms-dot,
+  .animate-comms-exit-fade { animation: none; }
+}
