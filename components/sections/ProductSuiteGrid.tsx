@@ -7,6 +7,7 @@ import { ListingsPreview } from "@/components/sections/previews/ListingsPreview"
 import { FinancePreview } from "@/components/sections/previews/FinancePreview";
 import { CompliancePreview } from "@/components/sections/previews/CompliancePreview";
 import { CommsPreview } from "@/components/sections/previews/CommsPreview";
+import { ResidentPortalPreview } from "@/components/sections/previews/ResidentPortalPreview";
 
 type Product = {
   slug: string;
@@ -95,6 +96,10 @@ export function ProductSuiteGrid({ headline, headlineMuted, products }: ProductS
                 ) : p.slug === "comms" ? (
                   <div aria-hidden className="mt-8 aspect-[5/4] w-full">
                     <CommsPreview />
+                  </div>
+                ) : p.slug === "resident-portal" ? (
+                  <div aria-hidden className="mt-8 w-full flex-1 min-h-0">
+                    <ResidentPortalPreview />
                   </div>
                 ) : (
                   <div aria-hidden className="mt-8 aspect-[16/10] w-full" />

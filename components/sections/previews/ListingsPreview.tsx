@@ -123,7 +123,7 @@ export function ListingsPreview() {
       </div>
 
       {/* Phone — iPhone-style bezel wrapping the screen content. */}
-      <div className="absolute left-[6%] top-[4%] bottom-[4%] aspect-[200/410] rounded-[30px] bg-[#0B0820] p-[5px] shadow-[0_22px_40px_-12px_rgba(38,4,93,0.35)] ring-1 ring-black/20">
+      <div className="absolute left-[6%] top-[4%] h-[412px] w-[201px] rounded-[30px] bg-[#0B0820] p-[5px] shadow-[0_22px_40px_-12px_rgba(38,4,93,0.35)] ring-1 ring-black/20">
         <div className="relative h-full w-full overflow-hidden rounded-[24px]">
           <PropertyDetailScreen current={current} previous={previous} swapKey={state.current} />
           <div className="pointer-events-none absolute left-1/2 top-[6px] h-[14px] w-[44px] -translate-x-1/2 rounded-full bg-black" />

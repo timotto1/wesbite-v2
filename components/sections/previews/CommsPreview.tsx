@@ -152,7 +152,7 @@ export function CommsPreview() {
     <div
       className={`relative h-full w-full ${isExiting ? "animate-comms-exit-fade" : ""}`}
     >
-      <div className="flex h-full flex-col justify-center gap-2.5">
+      <div className="flex h-full flex-col justify-end gap-2.5 pb-10">
         {showQuestion && <QuestionBubble text={visibleQ} />}
         {showReplySection && (
           <div className="flex flex-col gap-1.5">
@@ -170,7 +170,7 @@ export function CommsPreview() {
 function QuestionBubble({ text }: { text: string }) {
   return (
     <div className="flex justify-end">
-      <div className="max-w-[80%] rounded-[20px] border border-[#ECE9F0] bg-white px-4 py-2 text-[11px] font-medium leading-relaxed text-stairpay shadow-[0_1px_2px_rgba(38,4,93,0.04)]">
+      <div className="comms-bubble-grow max-w-[80%] rounded-[20px] border border-[#ECE9F0] bg-white px-4 py-2 text-[11px] font-medium leading-relaxed text-stairpay shadow-[0_1px_2px_rgba(38,4,93,0.04)]">
         {text}
       </div>
     </div>
@@ -179,7 +179,7 @@ function QuestionBubble({ text }: { text: string }) {
 
 function AnswerBubble({ text }: { text: string }) {
   return (
-    <div className="max-w-[92%] rounded-2xl border border-[#ECE9F0] bg-white px-4 py-3 text-[11px] leading-relaxed text-[#26045D] shadow-[0_1px_2px_rgba(38,4,93,0.04)]">
+    <div className="comms-bubble-grow max-w-[92%] rounded-2xl border border-[#ECE9F0] bg-white px-4 py-3 text-[11px] leading-relaxed text-[#26045D] shadow-[0_1px_2px_rgba(38,4,93,0.04)]">
       {text}
     </div>
   );
