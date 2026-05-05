@@ -4,9 +4,8 @@ export const residentPortal: ProductPageData = {
   slug: "resident-portal",
   name: "Resident Portal",
   hero: {
-    headline:
-      "One place residents manage their home. One place data lands in yours.",
-    sub: "Documents, costs, payments, affordability, instructions — in the resident's hands, syncing back to your team in real time.",
+    headline: "Cut resident queries. Capture cleaner data.",
+    sub: "Residents self-serve documents, payments, affordability checks, and instructions in a portal they actually want to use — and every action syncs back to your team in real time.",
   },
   problem: {
     headline: "Residents in Shared Ownership are largely in the dark.",

@@ -1,4 +1,5 @@
 import { TopNav } from "@/components/layout/TopNav";
+import { PromoBanner } from "@/components/layout/PromoBanner";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
 
@@ -14,7 +15,8 @@ export default function MarketingLayout({
       </a>
       <ScrollProgress />
       <TopNav />
-      <div className="mx-auto min-h-screen w-full max-w-page">
+      <PromoBanner />
+      <div className="min-h-screen w-full">
         <main id="main" className="relative">
           {children}
         </main>

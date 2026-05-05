@@ -5,7 +5,6 @@ import { ProblemStatement } from "@/components/sections/ProblemStatement";
 import { BuiltForSection } from "@/components/sections/BuiltForSection";
 import { ProductSuiteGrid } from "@/components/sections/ProductSuiteGrid";
 import { Pillars } from "@/components/sections/Pillars";
-import { SecuritySection } from "@/components/sections/SecuritySection";
 import { IntegrationsGrid } from "@/components/sections/IntegrationsGrid";
 import { CaseStudiesGrid } from "@/components/sections/CaseStudiesGrid";
 import { FinalCTA } from "@/components/sections/FinalCTA";
@@ -28,12 +27,6 @@ export default function LandingPage() {
         logos={landing.logoStrip.logos}
       />
 
-      <BuiltForSection
-        headline={landing.builtFor.headline}
-        headlineMuted={landing.builtFor.headlineMuted}
-        subtitle={landing.builtFor.subtitle}
-      />
-
       <ProblemStatement
         headline={landing.problem.headline}
         body={landing.problem.body}
@@ -45,16 +38,15 @@ export default function LandingPage() {
         products={landing.productSuite.products}
       />
 
+      <BuiltForSection
+        headline={landing.builtFor.headline}
+        headlineMuted={landing.builtFor.headlineMuted}
+        subtitle={landing.builtFor.subtitle}
+      />
+
       <Pillars
         headline={landing.pillars.headline}
         items={landing.pillars.items}
-      />
-
-      <SecuritySection
-        eyebrow={landing.security.eyebrow}
-        headline={landing.security.headline}
-        body={landing.security.body}
-        points={landing.security.points}
       />
 
       <IntegrationsGrid

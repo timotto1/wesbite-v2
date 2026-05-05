@@ -1,13 +1,13 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { products, productSlugs } from "@/content/products";
+import { landing } from "@/content/landing";
 import { HeroStaged } from "@/components/sections/HeroStaged";
 import { ProblemStatement } from "@/components/sections/ProblemStatement";
-import { FeatureStack } from "@/components/sections/FeatureStack";
+import { BenefitsRow } from "@/components/sections/BenefitsRow";
+import { ProductFeaturesSection } from "@/components/sections/ProductFeaturesSection";
 import { MetricsAnatomy } from "@/components/sections/MetricsAnatomy";
 import { FitsWith } from "@/components/sections/FitsWith";
-import { ProductSecurityIntegrations } from "@/components/sections/ProductSecurityIntegrations";
-import { CaseStudyCard } from "@/components/primitives/CaseStudyCard";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import {
   ListingsHero,
@@ -65,8 +65,15 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
   const product = products[params.slug];
   if (!product) notFound();
 
+  const fallbackBenefits =
+    landing.productSuite.products.find((p) => p.slug === product.slug)
+      ?.benefits ?? [];
+  const benefits =
+    product.outcomes ??
+    fallbackBenefits.map((heading) => ({ heading }));
+
   return (
-    <>
+    <div className="md:px-6 lg:px-12 xl:px-20">
       <HeroStaged
         eyebrow={product.name}
         headline={product.hero.headline}
@@ -76,28 +83,27 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
         illustration={HEROES[product.slug]}
       />
 
-      <ProblemStatement
-        headline={product.problem.headline}
-        body={product.problem.body}
+      <ProblemStatement body={product.problem.body} />
+
+      {benefits.length ? <BenefitsRow benefits={benefits} /> : null}
+
+      <ProductFeaturesSection
+        features={product.richFeatures ?? product.features.items}
       />
 
-      <FeatureStack
-        headline={product.features.headline}
-        headlineMuted={product.features.headlineMuted}
-        features={product.features.items}
-      />
-
-      <MetricsAnatomy
-        eyebrow="In production"
-        headline="The numbers behind it."
-        metrics={product.metrics as [
-          (typeof product.metrics)[number],
-          (typeof product.metrics)[number],
-          (typeof product.metrics)[number],
-          (typeof product.metrics)[number],
-        ]}
-        diagram={DIAGRAMS[product.slug]}
-      />
+      {product.metrics.length ? (
+        <MetricsAnatomy
+          eyebrow="In production"
+          headline="The numbers behind it."
+          metrics={product.metrics as [
+            (typeof product.metrics)[number],
+            (typeof product.metrics)[number],
+            (typeof product.metrics)[number],
+            (typeof product.metrics)[number],
+          ]}
+          diagram={DIAGRAMS[product.slug]}
+        />
+      ) : null}
 
       <FitsWith
         eyebrow="One platform"
@@ -106,27 +112,11 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
         relatedProducts={product.fitsWith.relatedProducts}
       />
 
-      <ProductSecurityIntegrations />
-
-      {product.caseStudy ? (
-        <section className="mx-auto w-full max-w-page px-section py-24">
-          <div className="mx-auto max-w-3xl">
-            <CaseStudyCard
-              haName={product.caseStudy.haName}
-              headlineResult={product.caseStudy.headlineResult}
-              body={product.caseStudy.body}
-              quote={product.caseStudy.quote}
-              href="#"
-            />
-          </div>
-        </section>
-      ) : null}
-
       <FinalCTA
         headline={`See ${product.name} in your workflow.`}
         sub="30-minute demo. We'll show you the platform with your own workflows in mind."
         primaryCta={{ label: "Request demo", href: "/demo" }}
       />
-    </>
+    </div>
   );
 }

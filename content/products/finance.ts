@@ -4,8 +4,8 @@ export const finance: ProductPageData = {
   slug: "finance",
   name: "Finance",
   hero: {
-    headline: "Forecast on real data — not reverse-engineered spreadsheets.",
-    sub: "Rent, service charges, arrears, and staircasing settlements, with asset and resident data in the same model.",
+    headline: "Close the books on real numbers.",
+    sub: "Forecast rent, service charges, arrears, and staircasing settlements from live asset and resident data — not spreadsheets reverse-engineered the night before board.",
   },
   problem: {
     headline: "Finance teams forecast against data that doesn't agree with itself.",

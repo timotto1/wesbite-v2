@@ -29,7 +29,7 @@ export const landing = {
     headline: "Built for Housing Associations.",
     headlineMuted: "Used by residents.",
     subtitle:
-      "Stairpay is the only Shared Ownership platform built for both the Housing Association and the resident. Residents instruct staircasing, resales, and changes from their app. Landlords manage transactions, units, forecasts, and communications through their platform. One platform, many workflows.",
+      "The only Shared Ownership platform built for both the Housing Association and the resident. Residents act from their app; landlords run operations on the platform.",
   },
   productSuite: {
     headline: "End-to-end solutions for your business model.",

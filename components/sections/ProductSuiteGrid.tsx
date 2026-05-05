@@ -8,6 +8,7 @@ import { FinancePreview } from "@/components/sections/previews/FinancePreview";
 import { CompliancePreview } from "@/components/sections/previews/CompliancePreview";
 import { CommsPreview } from "@/components/sections/previews/CommsPreview";
 import { ResidentPortalPreview } from "@/components/sections/previews/ResidentPortalPreview";
+import { ListingsModalPreview } from "@/components/sections/previews/ListingsModalPreview";
 
 type Product = {
   slug: string;
@@ -28,15 +29,6 @@ const SPAN_BY_SLUG: Record<string, string> = {
   aftersales: "lg:col-span-3",
 };
 
-const CARD_BG_BY_SLUG: Record<string, string> = {
-  listings: "card-bg-listings",
-  "resident-portal": "card-bg-resident-portal",
-  comms: "card-bg-comms",
-  compliance: "card-bg-compliance",
-  finance: "card-bg-finance",
-  aftersales: "card-bg-aftersales",
-};
-
 export function ProductSuiteGrid({ headline, headlineMuted, products }: ProductSuiteGridProps) {
   const [active, setActive] = useState<Product | null>(null);
 
@@ -55,9 +47,7 @@ export function ProductSuiteGrid({ headline, headlineMuted, products }: ProductS
               <button
                 type="button"
                 onClick={() => setActive(p)}
-                className={`group gradient-stroke relative flex h-full w-full flex-col overflow-hidden rounded-card p-8 text-left transition-transform duration-300 ease-out hover:scale-[1.015] ${
-                  CARD_BG_BY_SLUG[p.slug] ?? "bg-paper-card"
-                }`}
+                className="group relative flex h-full w-full flex-col overflow-hidden rounded-card bg-paper-card p-8 text-left transition-transform duration-300 ease-out hover:scale-[1.015]"
               >
                 <span
                   aria-hidden
@@ -216,14 +206,20 @@ function ProductModal({ product, onClose }: { product: Product | null; onClose: 
           </ul>
         </div>
 
-        <div
-          aria-hidden
-          className="mt-10 flex aspect-[16/8] w-full items-center justify-center overflow-hidden rounded-card border border-dashed border-rule bg-paper-panel/60"
-        >
-          <span className="text-eyebrow uppercase tracking-wider text-ink-light">
-            {product.name} preview
-          </span>
-        </div>
+        {product.slug === "listings" ? (
+          <div className="mt-10">
+            <ListingsModalPreview />
+          </div>
+        ) : (
+          <div
+            aria-hidden
+            className="mt-10 flex aspect-[16/8] w-full items-center justify-center overflow-hidden rounded-card border border-dashed border-rule bg-paper-panel/60"
+          >
+            <span className="text-eyebrow uppercase tracking-wider text-ink-light">
+              {product.name} preview
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );

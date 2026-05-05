@@ -46,6 +46,31 @@ export type DiagramSectionProps = {
 
 export type Metric = { label: string; value: string };
 
+export type Outcome = { heading: string; body?: string };
+
+export type RichFeatureCard = { heading: string; body: string };
+
+export type RichFeature =
+  | {
+      template: "cards";
+      headline: string;
+      intro: string;
+      detail?: string;
+      cards: RichFeatureCard[];
+    }
+  | {
+      template: "checklist";
+      headline: string;
+      intro: string;
+      columns: { heading: string; items: string[] }[];
+    }
+  | {
+      template: "workflow";
+      headline: string;
+      intro: string;
+      steps: RichFeatureCard[];
+    };
+
 export type CaseStudy = {
   haName: string;
   headlineResult: string;
@@ -66,6 +91,8 @@ export type ProductPageData = {
     headline: string;
     body: string;
   };
+  outcomes?: Outcome[];
+  richFeatures?: RichFeature[];
   features: {
     headline: string;
     headlineMuted?: string;

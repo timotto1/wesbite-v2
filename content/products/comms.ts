@@ -4,8 +4,8 @@ export const comms: ProductPageData = {
   slug: "comms",
   name: "Comms",
   hero: {
-    headline: "Every resident conversation, in one place.",
-    sub: "Email, SMS, and in-app — threaded against the case, the development, and the resident, with the data to target the right cohort and the audit trail to prove it.",
+    headline: "Reach the right residents, prove every message.",
+    sub: "Send email, SMS, and in-app messages threaded against the case, development, and resident — with the targeting to hit the right cohort and the audit trail to prove you did.",
   },
   problem: {
     headline:

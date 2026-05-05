@@ -189,7 +189,7 @@ export function BuiltForSection({ headline, headlineMuted, subtitle }: BuiltForS
           ) : null}
         </h2>
         {subtitle ? (
-          <p className="text-[13px] text-ink-muted md:border-l md:border-rule md:pl-12 md:text-body-sm">
+          <p className="text-[15px] text-ink-muted md:border-l md:border-rule md:pl-12 md:text-body-md">
             {subtitle}
           </p>
         ) : null}
@@ -300,11 +300,11 @@ function FeatureNode({ feature, mode }: { feature: FeatureSpec; mode: Mode }) {
       }}
     >
       <div className="relative flex items-center justify-center">
-        <feature.Icon size={48} />
+        <feature.Icon size={64} />
 
         {/* Label appears in active mode, anchored to one side of the icon */}
         <div
-          className={`absolute top-1/2 w-[220px] -translate-y-1/2 transition-opacity duration-500 ${
+          className={`absolute top-1/2 w-[300px] -translate-y-1/2 transition-opacity duration-500 ${
             labelSide === "left" ? "right-[calc(100%+16px)] text-right" : "left-[calc(100%+16px)] text-left"
           }`}
           style={{
@@ -314,8 +314,8 @@ function FeatureNode({ feature, mode }: { feature: FeatureSpec; mode: Mode }) {
           }}
           aria-hidden={!isActive}
         >
-          <h3 className="text-body-md font-medium leading-tight text-ink">{feature.title}</h3>
-          <p className="mt-2 text-[13px] leading-snug text-ink-muted">{feature.body}</p>
+          <h3 className="text-heading-md font-medium leading-tight text-ink">{feature.title}</h3>
+          <p className="mt-2 text-body-sm leading-snug text-ink-muted">{feature.body}</p>
         </div>
       </div>
     </div>
