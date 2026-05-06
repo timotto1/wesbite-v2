@@ -21,13 +21,13 @@ export function CaseStudiesGrid({ eyebrow, headline, items }: CaseStudiesGridPro
     <section className="mx-auto w-full max-w-page px-section py-24">
       <Reveal className="mx-auto max-w-prose">
         {eyebrow ? <EyebrowLabel>{eyebrow}</EyebrowLabel> : null}
-        <h2 className="mt-4 text-heading-xl text-ink md:text-display-lg">
+        <h3 className="mt-4 text-heading-xl !font-medium text-ink md:text-display-lg">
           {headline}
-        </h2>
+        </h3>
       </Reveal>
       <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
         {items.map((item, i) => (
-          <Reveal key={item.haName} delay={120 + i * 100}>
+          <Reveal key={item.haName} delay={160 + i * 200}>
             <CaseStudyCard {...item} />
           </Reveal>
         ))}

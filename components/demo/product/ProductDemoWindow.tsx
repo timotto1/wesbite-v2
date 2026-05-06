@@ -125,7 +125,7 @@ export function ProductDemoWindow() {
     <div
       className="product-demo-scope"
       ref={stageRef}
-      style={{ position: "relative", width: "100%", height: 820, overflow: "hidden", borderRadius: 12 }}
+      style={{ position: "relative", width: "100%", height: 820, overflow: "hidden" }}
     >
       <div
         ref={winRef}

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { CTAButton } from "@/components/primitives/CTAButton";
 
@@ -29,14 +29,43 @@ const NAV_LINKS = [
 
 export function TopNav() {
   const pathname = usePathname() ?? "/";
+  const router = useRouter();
   const productActive = pathname.startsWith("/products");
+  const isDarkHero = pathname === "/products/finance";
   const [platformOpen, setPlatformOpen] = useState(false);
+  const [navigating, setNavigating] = useState(false);
 
   const closePanel = () => setPlatformOpen(false);
 
+  const handleDrawerNav = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    e.preventDefault();
+    closePanel();
+    setNavigating(true);
+    window.setTimeout(() => {
+      router.push(href);
+      window.setTimeout(() => setNavigating(false), 250);
+    }, 600);
+  };
+
   return (
+    <>
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-x-0 bottom-0 top-[56px] z-[45] bg-white"
+        style={{
+          opacity: navigating ? 1 : 0,
+          transition: `opacity ${navigating ? 600 : 700}ms cubic-bezier(0.22,1,0.36,1)`,
+        }}
+      />
     <header
-      className="sticky top-0 z-50 bg-white"
+      className={`sticky top-0 z-50 ${
+        isDarkHero
+          ? "bg-white/10 backdrop-blur-md"
+          : "bg-white"
+      }`}
       onMouseLeave={closePanel}
     >
       <nav className="mx-auto flex h-[56px] w-full max-w-page items-center px-section">
@@ -44,13 +73,24 @@ export function TopNav() {
           href="/"
           aria-label="Stairpay home"
           onMouseEnter={closePanel}
-          className="flex items-center gap-2 font-sans text-[18px] font-semibold lowercase leading-none tracking-[-0.01em] text-ink transition-opacity duration-200 hover:opacity-80"
+          className={`flex items-center gap-2 font-sans text-[18px] font-semibold lowercase leading-none tracking-[-0.01em] transition-opacity duration-200 hover:opacity-80 ${
+            isDarkHero ? "text-white" : "text-ink"
+          }`}
         >
-          <span aria-hidden className="h-2 w-2 rounded-[2px] bg-stairpay" />
+          <span
+            aria-hidden
+            className={`h-2 w-2 rounded-[2px] ${
+              isDarkHero ? "bg-white" : "bg-stairpay"
+            }`}
+          />
           stairpay
         </Link>
 
-        <div className="ml-10 hidden items-center gap-7 text-body-sm font-light text-ink-muted md:flex">
+        <div
+          className={`ml-10 hidden items-center gap-7 text-body-sm font-light md:flex ${
+            isDarkHero ? "text-white/70" : "text-ink-muted"
+          }`}
+        >
           <button
             type="button"
             aria-haspopup="true"
@@ -58,7 +98,9 @@ export function TopNav() {
             onMouseEnter={() => setPlatformOpen(true)}
             onFocus={() => setPlatformOpen(true)}
             className={`flex items-center gap-1.5 transition-colors duration-200 ${
-              productActive || platformOpen ? "text-ink" : "hover:text-ink"
+              productActive || platformOpen
+                ? isDarkHero ? "text-white" : "text-ink"
+                : isDarkHero ? "hover:text-white" : "hover:text-ink"
             }`}
           >
             Platform
@@ -83,7 +125,9 @@ export function TopNav() {
                 aria-current={active ? "page" : undefined}
                 onMouseEnter={closePanel}
                 className={`relative transition-colors duration-200 ${
-                  active ? "text-ink" : "hover:text-ink"
+                  active
+                    ? isDarkHero ? "text-white" : "text-ink"
+                    : isDarkHero ? "hover:text-white" : "hover:text-ink"
                 }`}
               >
                 {l.label}
@@ -102,8 +146,26 @@ export function TopNav() {
           className="ml-auto flex items-center gap-3"
           onMouseEnter={closePanel}
         >
-          <CTAButton variant="secondary" href="/login" label="Log in" />
-          <CTAButton variant="primary" href="/demo" label="Contact sales" />
+          <CTAButton
+            variant="secondary"
+            href="/login"
+            label="Log in"
+            className={
+              isDarkHero
+                ? "!border-white !text-white hover:!bg-white hover:!text-ink"
+                : ""
+            }
+          />
+          <CTAButton
+            variant="primary"
+            href="/demo"
+            label="Contact sales"
+            className={
+              isDarkHero
+                ? "!border-white !bg-white !text-ink hover:!border-white hover:!bg-white/90 hover:!text-ink"
+                : ""
+            }
+          />
         </div>
       </nav>
 
@@ -111,7 +173,7 @@ export function TopNav() {
       <div
         aria-hidden
         onMouseEnter={closePanel}
-        className={`fixed inset-x-0 bottom-0 top-[56px] backdrop-blur-md transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        className={`fixed inset-x-0 bottom-0 top-[56px] backdrop-blur-md transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           platformOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       />
@@ -119,7 +181,7 @@ export function TopNav() {
       {/* Full-width Platform panel — slides down beneath the nav. */}
       <div
         aria-hidden={!platformOpen}
-        className={`absolute inset-x-0 top-full overflow-hidden bg-white transition-[max-height,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        className={`absolute inset-x-0 top-full overflow-hidden bg-white transition-[max-height,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           platformOpen
             ? "max-h-[520px] opacity-100"
             : "pointer-events-none max-h-0 opacity-0"
@@ -138,7 +200,7 @@ export function TopNav() {
                   <StaggerItem key={p.slug} open={platformOpen} delay={130 + i * 50}>
                     <Link
                       href={`/products/${p.slug}`}
-                      onClick={closePanel}
+                      onClick={(e) => handleDrawerNav(e, `/products/${p.slug}`)}
                       className="group/module flex items-center gap-2 text-heading-md font-medium text-ink transition-colors duration-150 hover:text-stairpay"
                     >
                       {p.name}
@@ -163,7 +225,7 @@ export function TopNav() {
                   <StaggerItem key={l.href} open={platformOpen} delay={330 + i * 50}>
                     <Link
                       href={l.href}
-                      onClick={closePanel}
+                      onClick={(e) => handleDrawerNav(e, l.href)}
                       className="text-body-sm font-normal text-ink-muted transition-colors duration-150 hover:text-ink"
                     >
                       {l.label}
@@ -176,6 +238,7 @@ export function TopNav() {
         </div>
       </div>
     </header>
+    </>
   );
 }
 

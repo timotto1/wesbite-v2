@@ -20,9 +20,9 @@ export function IntegrationsGrid({
     <section className="mx-auto w-full max-w-page px-section py-24">
       <Reveal className="mx-auto max-w-prose">
         {eyebrow ? <EyebrowLabel>{eyebrow}</EyebrowLabel> : null}
-        <h2 className="mt-4 text-heading-xl text-ink md:text-display-lg">
+        <h3 className="mt-4 text-heading-xl !font-medium text-ink md:text-display-lg">
           {headline}
-        </h2>
+        </h3>
         <p className="mt-6 text-body-lg text-ink-muted">{body}</p>
       </Reveal>
       <Reveal delay={140} className="mt-16 overflow-hidden rounded-card border-hairline border-rule bg-paper-card">

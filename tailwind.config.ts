@@ -15,7 +15,7 @@ const config: Config = {
           light: "#9094A0",
         },
         paper: {
-          DEFAULT: "#F6F5F6",
+          DEFAULT: "#FBFAFB",
           panel: "#F2F2EC",
           card: "#FFFFFF",
         },
@@ -32,9 +32,9 @@ const config: Config = {
         sans: ["var(--font-poppins)", "system-ui", "sans-serif"],
       },
       fontSize: {
-        "display-xl": ["48px", { lineHeight: "1.05", letterSpacing: "0.02em", fontWeight: "300" }],
-        "display-lg": ["40px", { lineHeight: "1.08", letterSpacing: "0.02em", fontWeight: "300" }],
-        "heading-xl": ["32px", { lineHeight: "1.15", letterSpacing: "0.02em", fontWeight: "300" }],
+        "display-xl": ["48px", { lineHeight: "1.05", letterSpacing: "-0.02em", fontWeight: "300" }],
+        "display-lg": ["40px", { lineHeight: "1.08", letterSpacing: "-0.02em", fontWeight: "300" }],
+        "heading-xl": ["32px", { lineHeight: "1.15", letterSpacing: "-0.015em", fontWeight: "300" }],
         "heading-lg": ["26px", { lineHeight: "1.2", letterSpacing: "0.02em", fontWeight: "400" }],
         "heading-md": ["22px", { lineHeight: "1.25", letterSpacing: "0.02em", fontWeight: "400" }],
         "heading-sm": ["18px", { lineHeight: "1.4", letterSpacing: "0.02em", fontWeight: "500" }],

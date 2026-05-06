@@ -5,35 +5,35 @@ export const mdxComponents = {
   h1: (props: ComponentProps<"h1">) => (
     <h1
       {...props}
-      className="mt-12 text-heading-xl text-ink"
+      className="mt-12 text-heading-lg text-ink"
     />
   ),
   h2: (props: ComponentProps<"h2">) => (
-    <h2 {...props} className="mt-12 text-heading-lg text-ink" />
+    <h2 {...props} className="mt-12 text-heading-md text-ink" />
   ),
   h3: (props: ComponentProps<"h3">) => (
-    <h3 {...props} className="mt-10 text-heading-md text-ink" />
+    <h3 {...props} className="mt-10 text-heading-sm text-ink" />
   ),
   p: (props: ComponentProps<"p">) => (
-    <p {...props} className="mt-6 text-body-lg text-ink" />
+    <p {...props} className="mt-6 text-body-md tracking-tight text-ink" />
   ),
   ul: (props: ComponentProps<"ul">) => (
     <ul
       {...props}
-      className="mt-6 space-y-3 pl-6 text-body-lg text-ink [list-style:disc] marker:text-ink-light"
+      className="mt-6 space-y-3 pl-6 text-body-md tracking-tight text-ink [list-style:disc] marker:text-ink-light"
     />
   ),
   ol: (props: ComponentProps<"ol">) => (
     <ol
       {...props}
-      className="mt-6 space-y-3 pl-6 text-body-lg text-ink [list-style:decimal] marker:text-ink-light"
+      className="mt-6 space-y-3 pl-6 text-body-md tracking-tight text-ink [list-style:decimal] marker:text-ink-light"
     />
   ),
   li: (props: ComponentProps<"li">) => <li {...props} />,
   blockquote: (props: ComponentProps<"blockquote">) => (
     <blockquote
       {...props}
-      className="mt-8 border-l-2 border-stairpay pl-6 text-body-lg italic text-ink-muted"
+      className="mt-8 border-l-2 border-stairpay pl-6 text-body-md italic text-ink-muted"
     />
   ),
   hr: () => (

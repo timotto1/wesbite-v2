@@ -75,8 +75,8 @@ export function CaseManagementView() {
 
         <div className="pd-card">
           <div className="pd-card-title" style={{ marginBottom: 12 }}>Enquiry Type</div>
-          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-            <DonutChart data={[{ value: 9, color: "#5b3fd6" }, { value: 6, color: "#ff8eb6" }]} size={130} thickness={18} />
+          <div style={{ display: "flex", alignItems: "center", gap: 12, minWidth: 0 }}>
+            <DonutChart data={[{ value: 9, color: "#5b3fd6" }, { value: 6, color: "#ff8eb6" }]} size={110} thickness={16} />
             <div className="pd-legend">
               <div className="pd-legend-row"><span className="pd-legend-dot" style={{ background: "#5b3fd6" }} />Staircasing</div>
               <div className="pd-legend-row"><span className="pd-legend-dot" style={{ background: "#ff8eb6" }} />Resales</div>

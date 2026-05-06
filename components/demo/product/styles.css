@@ -35,7 +35,7 @@
 
 .product-demo-scope .pd-window {
   position: relative;
-  border-radius: 14px;
+  border-radius: 0;
   background: var(--pd-bg-window);
   box-shadow: var(--pd-shadow-window);
   overflow: hidden;
@@ -89,7 +89,7 @@
 }
 
 .product-demo-scope .pd-sidebar {
-  width: 232px;
+  width: 196px;
   flex-shrink: 0;
   background: var(--pd-bg-window);
   border-right: 1px solid var(--pd-line);
@@ -324,7 +324,8 @@
 .product-demo-scope .pd-grid { display: grid; gap: 16px; }
 .product-demo-scope .pd-grid.c-3 { grid-template-columns: repeat(3, 1fr); }
 .product-demo-scope .pd-grid.c-4 { grid-template-columns: repeat(4, 1fr); }
-.product-demo-scope .pd-grid.c-2-1 { grid-template-columns: 2fr 1fr; }
+.product-demo-scope .pd-grid.c-2-1 { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+.product-demo-scope .pd-grid.c-2-1 > .pd-card { min-width: 0; }
 .product-demo-scope .pd-grid.c-2 { grid-template-columns: 1fr 1fr; }
 
 .product-demo-scope .pd-legend { display: flex; flex-direction: column; gap: 8px; font-size: 12px; color: var(--pd-ink-2); }

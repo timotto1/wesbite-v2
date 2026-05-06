@@ -6,6 +6,8 @@ type RevealProps = {
   className?: string;
   /** ms to delay the reveal after intersection */
   delay?: number;
+  /** ms override for the transition duration (otherwise uses the .reveal default). */
+  duration?: number;
   /** Reveal once and keep visible (default true). */
   once?: boolean;
   /** Tweak the intersection rootMargin — default reveals slightly before fully in view. */
@@ -20,6 +22,7 @@ type RevealProps = {
 export function Reveal({
   className = "",
   delay = 0,
+  duration,
   once = true,
   rootMargin = "0px 0px -10% 0px",
   children,
@@ -56,7 +59,14 @@ export function Reveal({
       ref={ref}
       data-reveal={shown ? "in" : "out"}
       className={`reveal ${className}`}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+      style={
+        delay || duration
+          ? {
+              ...(delay ? { transitionDelay: `${delay}ms` } : {}),
+              ...(duration ? { transitionDuration: `${duration}ms` } : {}),
+            }
+          : undefined
+      }
     >
       {children}
     </div>

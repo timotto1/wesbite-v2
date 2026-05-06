@@ -353,14 +353,14 @@ function PropertyDetailScreen({
     <div className="flex h-full flex-col bg-[#F4F1F4] text-[#1A1228]">
       {/* Top navy bar with curved bottom — title + back chevron */}
       <div className="relative bg-[#0F0832] pt-[18px] pb-3">
-        <button
+        <span
           aria-hidden
           className="absolute left-2 top-1/2 mt-1 -translate-y-1/2 text-white"
         >
           <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="15 18 9 12 15 6" />
           </svg>
-        </button>
+        </span>
         <div className="text-center text-[8px] font-bold text-white">
           Property details
         </div>

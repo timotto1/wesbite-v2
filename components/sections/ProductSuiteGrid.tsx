@@ -36,18 +36,25 @@ export function ProductSuiteGrid({ headline, headlineMuted, products }: ProductS
     <section className="border-t border-rule">
       <div className="mx-auto w-full max-w-page px-section py-24">
         <Reveal>
-          <h2 className="max-w-3xl text-heading-md md:text-heading-lg">
+          <h3 className="max-w-3xl text-heading-md !font-medium md:text-heading-lg">
             <span className="text-ink">{headline}</span>
             {headlineMuted ? <span className="text-ink-muted"> {headlineMuted}</span> : null}
-          </h2>
+          </h3>
         </Reveal>
         <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {products.map((p, i) => (
-            <Reveal key={p.slug} delay={80 + i * 60} className={SPAN_BY_SLUG[p.slug]}>
-              <button
-                type="button"
+            <Reveal key={p.slug} delay={120 + i * 140} className={SPAN_BY_SLUG[p.slug]}>
+              <div
+                role="button"
+                tabIndex={0}
                 onClick={() => setActive(p)}
-                className="group relative flex h-full w-full flex-col overflow-hidden rounded-card bg-paper-card p-8 text-left transition-transform duration-300 ease-out hover:scale-[1.015]"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setActive(p);
+                  }
+                }}
+                className="group relative flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-card bg-paper-card p-8 text-left transition-transform duration-300 ease-out hover:scale-[1.015]"
               >
                 <span
                   aria-hidden
@@ -94,7 +101,7 @@ export function ProductSuiteGrid({ headline, headlineMuted, products }: ProductS
                 ) : (
                   <div aria-hidden className="mt-8 aspect-[16/10] w-full" />
                 )}
-              </button>
+              </div>
             </Reveal>
           ))}
         </div>

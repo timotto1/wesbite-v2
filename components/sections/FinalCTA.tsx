@@ -18,9 +18,9 @@ export function FinalCTA({ headline, sub, primaryCta }: FinalCTAProps) {
             className="pointer-events-none absolute inset-x-0 -top-24 h-48 bg-stairpay-soft opacity-60 blur-3xl"
           />
           <div className="relative">
-            <h2 className="text-heading-xl text-ink md:text-display-lg">
+            <h3 className="text-heading-xl !font-medium text-ink md:text-display-lg">
               {headline}
-            </h2>
+            </h3>
             <p className="mx-auto mt-6 max-w-prose text-body-lg text-ink-muted">
               {sub}
             </p>

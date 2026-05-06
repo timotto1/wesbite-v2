@@ -9,6 +9,8 @@ export type PostFrontmatter = {
   author: string;
   dek?: string;
   excerpt: string;
+  image?: string;
+  pinned?: boolean;
 };
 
 export type Post = {

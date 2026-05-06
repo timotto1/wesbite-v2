@@ -1,25 +1,25 @@
 import { landing } from "@/content/landing";
-import { HeroStaged } from "@/components/sections/HeroStaged";
+import { HeroLanding } from "@/components/sections/HeroLanding";
 import { LogoStrip } from "@/components/primitives/LogoStrip";
 import { ProblemStatement } from "@/components/sections/ProblemStatement";
-import { BuiltForSection } from "@/components/sections/BuiltForSection";
+import { AudienceCards } from "@/components/sections/AudienceCards";
 import { ProductSuiteGrid } from "@/components/sections/ProductSuiteGrid";
 import { Pillars } from "@/components/sections/Pillars";
 import { IntegrationsGrid } from "@/components/sections/IntegrationsGrid";
 import { CaseStudiesGrid } from "@/components/sections/CaseStudiesGrid";
 import { FinalCTA } from "@/components/sections/FinalCTA";
-import { ProductDemoWindow } from "@/components/demo/product/ProductDemoWindow";
+import { MacbookDemo } from "@/components/demo/product/MacbookDemo";
 
 export default function LandingPage() {
   return (
     <>
-      <HeroStaged
+      <HeroLanding
         stat={landing.hero.stat}
         headline={landing.hero.headline}
         sub={landing.hero.sub}
         primaryCta={landing.hero.primaryCta}
         secondaryCta={landing.hero.secondaryCta}
-        illustration={<ProductDemoWindow />}
+        illustration={<MacbookDemo />}
       />
 
       <LogoStrip
@@ -38,11 +38,7 @@ export default function LandingPage() {
         products={landing.productSuite.products}
       />
 
-      <BuiltForSection
-        headline={landing.builtFor.headline}
-        headlineMuted={landing.builtFor.headlineMuted}
-        subtitle={landing.builtFor.subtitle}
-      />
+      <AudienceCards subtitle={landing.builtFor.subtitle} />
 
       <Pillars
         headline={landing.pillars.headline}

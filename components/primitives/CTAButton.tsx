@@ -5,6 +5,7 @@ type CTAButtonProps = {
   href: string;
   label: string;
   arrow?: boolean;
+  className?: string;
 };
 
 const BASE =
@@ -15,9 +16,9 @@ const VARIANT: Record<CTAButtonProps["variant"], string> = {
   secondary: "border-ink bg-transparent text-ink hover:bg-ink hover:text-paper",
 };
 
-export function CTAButton({ variant, href, label, arrow = false }: CTAButtonProps) {
+export function CTAButton({ variant, href, label, arrow = false, className = "" }: CTAButtonProps) {
   return (
-    <Link href={href} className={`${BASE} ${VARIANT[variant]}`}>
+    <Link href={href} className={`${BASE} ${VARIANT[variant]} ${className}`}>
       <span>{label}</span>
       {arrow ? (
         <svg

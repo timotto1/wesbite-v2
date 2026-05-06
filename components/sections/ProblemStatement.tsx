@@ -17,9 +17,9 @@ export function ProblemStatement({ headline, body }: ProblemStatementProps) {
       <div className="mx-auto w-full max-w-page px-section py-32">
         <Reveal className="mx-auto max-w-3xl">
           {headline ? (
-            <h2 className="text-heading-xl text-ink md:text-display-lg">
+            <h3 className="text-heading-xl !font-medium text-ink md:text-display-lg">
               {headline}
-            </h2>
+            </h3>
           ) : null}
           <p
             className={`${headline ? "mt-8" : ""} max-w-prose text-body-lg text-ink-muted`}

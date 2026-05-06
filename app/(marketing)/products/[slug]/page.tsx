@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { products, productSlugs } from "@/content/products";
 import { landing } from "@/content/landing";
 import { HeroStaged } from "@/components/sections/HeroStaged";
+import { FinanceFullHero } from "@/components/sections/FinanceFullHero";
+import { CommsFullHero } from "@/components/sections/CommsFullHero";
 import { ProblemStatement } from "@/components/sections/ProblemStatement";
 import { BenefitsRow } from "@/components/sections/BenefitsRow";
 import { ProductFeaturesSection } from "@/components/sections/ProductFeaturesSection";
@@ -72,51 +74,62 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
     product.outcomes ??
     fallbackBenefits.map((heading) => ({ heading }));
 
+  const heroOnly = product.slug === "finance" || product.slug === "comms";
+
   return (
-    <div className="md:px-6 lg:px-12 xl:px-20">
-      <HeroStaged
-        eyebrow={product.name}
-        headline={product.hero.headline}
-        headlineMuted={product.hero.headlineMuted}
-        sub={product.hero.sub}
-        primaryCta={{ label: "Request demo", href: "/demo" }}
-        illustration={HEROES[product.slug]}
-      />
+    <div
+      className={`md:px-6 lg:px-12 xl:px-20 ${heroOnly ? "-mb-32" : ""}`}
+    >
+      {product.slug === "finance" ? <FinanceFullHero /> : null}
+      {product.slug === "comms" ? <CommsFullHero /> : null}
 
-      <ProblemStatement body={product.problem.body} />
+      {!heroOnly ? (
+        <>
+          <HeroStaged
+            eyebrow={product.name}
+            headline={product.hero.headline}
+            headlineMuted={product.hero.headlineMuted}
+            sub={product.hero.sub}
+            primaryCta={{ label: "Request demo", href: "/demo" }}
+            illustration={HEROES[product.slug]}
+          />
 
-      {benefits.length ? <BenefitsRow benefits={benefits} /> : null}
+          <ProblemStatement body={product.problem.body} />
 
-      <ProductFeaturesSection
-        features={product.richFeatures ?? product.features.items}
-      />
+          {benefits.length ? <BenefitsRow benefits={benefits} /> : null}
 
-      {product.metrics.length ? (
-        <MetricsAnatomy
-          eyebrow="In production"
-          headline="The numbers behind it."
-          metrics={product.metrics as [
-            (typeof product.metrics)[number],
-            (typeof product.metrics)[number],
-            (typeof product.metrics)[number],
-            (typeof product.metrics)[number],
-          ]}
-          diagram={DIAGRAMS[product.slug]}
-        />
+          <ProductFeaturesSection
+            features={product.richFeatures ?? product.features.items}
+          />
+
+          {product.metrics.length ? (
+            <MetricsAnatomy
+              eyebrow="In production"
+              headline="The numbers behind it."
+              metrics={product.metrics as [
+                (typeof product.metrics)[number],
+                (typeof product.metrics)[number],
+                (typeof product.metrics)[number],
+                (typeof product.metrics)[number],
+              ]}
+              diagram={DIAGRAMS[product.slug]}
+            />
+          ) : null}
+
+          <FitsWith
+            eyebrow="One platform"
+            headline={product.fitsWith.headline}
+            body={product.fitsWith.body}
+            relatedProducts={product.fitsWith.relatedProducts}
+          />
+
+          <FinalCTA
+            headline={`See ${product.name} in your workflow.`}
+            sub="30-minute demo. We'll show you the platform with your own workflows in mind."
+            primaryCta={{ label: "Request demo", href: "/demo" }}
+          />
+        </>
       ) : null}
-
-      <FitsWith
-        eyebrow="One platform"
-        headline={product.fitsWith.headline}
-        body={product.fitsWith.body}
-        relatedProducts={product.fitsWith.relatedProducts}
-      />
-
-      <FinalCTA
-        headline={`See ${product.name} in your workflow.`}
-        sub="30-minute demo. We'll show you the platform with your own workflows in mind."
-        primaryCta={{ label: "Request demo", href: "/demo" }}
-      />
     </div>
   );
 }

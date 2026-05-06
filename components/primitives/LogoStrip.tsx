@@ -2,19 +2,21 @@
 
 import { useEffect, useState } from "react";
 
+type Logo = { name: string; src?: string };
+
 type LogoStripProps = {
   intro?: string;
-  logos: Array<{ name: string; src?: string }>;
+  logos: Logo[];
 };
 
-const VISIBLE_CELLS = 6;
-const PERIOD_MS = 2800;
-const STAGGER_MS = 400;
-const FADE_MS = 350;
+const VISIBLE_CELLS = 10;
+const PERIOD_MS = 20000;
+const STAGGER_MS = 1500;
+const FADE_MS = 1000;
 
 type Phase = "stable" | "out" | "in";
 
-function CycleCell({ items, startIdx, delayMs }: { items: string[]; startIdx: number; delayMs: number }) {
+function CycleCell({ items, startIdx, delayMs }: { items: Logo[]; startIdx: number; delayMs: number }) {
   const [idx, setIdx] = useState(startIdx);
   const [phase, setPhase] = useState<Phase>("stable");
 
@@ -54,31 +56,38 @@ function CycleCell({ items, startIdx, delayMs }: { items: string[]; startIdx: nu
     in: { opacity: 0, transform: "translateY(10px)", filter: "blur(4px)" },
   };
   const styles = stylesByPhase[phase];
+  const logo = items[idx];
 
   return (
     <span
-      className="text-body-md font-medium text-ink-muted"
+      className="inline-flex items-center justify-center text-body-md font-medium text-ink-muted"
       style={{
         ...styles,
         transition: phase === "in" ? "none" : `opacity ${FADE_MS}ms ease, transform ${FADE_MS}ms cubic-bezier(.4,0,.2,1), filter ${FADE_MS}ms ease`,
-        display: "inline-block",
       }}
     >
-      {items[idx]}
+      {logo.src ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={logo.src}
+          alt={logo.name}
+          className="max-h-7 w-auto select-none object-contain"
+        />
+      ) : (
+        logo.name
+      )}
     </span>
   );
 }
 
 export function LogoStrip({ intro, logos }: LogoStripProps) {
-  const names = logos.map((l) => l.name);
-
   return (
     <div className="mx-auto w-full max-w-content px-section py-16">
       {intro ? <p className="text-body-sm font-normal text-ink-light">{intro}:</p> : null}
-      <div className="mt-6 grid grid-cols-2 divide-x divide-rule border border-rule sm:grid-cols-3 md:grid-cols-6">
+      <div className="mt-6 grid grid-cols-2 gap-px overflow-hidden border border-rule bg-rule sm:grid-cols-3 md:grid-cols-5">
         {Array.from({ length: VISIBLE_CELLS }, (_, i) => (
-          <div key={i} className="flex h-24 items-center justify-center px-4">
-            <CycleCell items={names} startIdx={i % names.length} delayMs={i * STAGGER_MS} />
+          <div key={i} className="flex h-24 items-center justify-center bg-paper px-4">
+            <CycleCell items={logos} startIdx={i % logos.length} delayMs={i * STAGGER_MS} />
           </div>
         ))}
       </div>

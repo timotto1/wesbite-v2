@@ -9,6 +9,7 @@ import {
   getRelatedPost,
 } from "@/lib/blog";
 import { mdxComponents } from "@/components/blog/MdxComponents";
+import { ShareRow } from "@/components/blog/ShareRow";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export function generateStaticParams() {
@@ -36,28 +37,51 @@ export default function PostPage({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      <article className="mx-auto w-full max-w-prose px-section py-24">
-        <p className="text-eyebrow uppercase text-ink-muted">
-          {post.frontmatter.category} · {formatPostDate(post.frontmatter.date)}
-        </p>
-        <h1 className="mt-4 text-display-lg text-ink">
-          {post.frontmatter.title}
-        </h1>
-        {post.frontmatter.dek ? (
-          <p className="mt-4 text-body-lg text-ink-muted">
-            {post.frontmatter.dek}
+      <div
+        className="bg-white"
+        style={{
+          marginLeft: "calc(50% - 50vw)",
+          marginRight: "calc(50% - 50vw)",
+        }}
+      >
+        <article className="article mx-auto w-full max-w-[720px] px-section py-24">
+          <header>
+          <p className="text-eyebrow uppercase text-ink-muted">
+            {post.frontmatter.category}
           </p>
-        ) : null}
-        <p className="mt-8 text-body-sm text-ink-light">
-          By {post.frontmatter.author}
-        </p>
-        <div className="mt-12">
+          <p className="mt-2 text-eyebrow uppercase text-ink-muted">
+            {formatPostDate(post.frontmatter.date)}
+          </p>
+
+          <h1 className="mt-6 text-[44px] font-semibold leading-[1.05] tracking-tight text-ink md:text-[56px]">
+            {post.frontmatter.title}
+          </h1>
+
+          {post.frontmatter.dek ? (
+            <p className="mt-6 whitespace-pre-line text-heading-md !font-medium text-ink">
+              {post.frontmatter.dek}
+            </p>
+          ) : null}
+
+          <div className="mt-6">
+            <ShareRow title={post.frontmatter.title} slug={post.slug} />
+          </div>
+
+          <hr className="mt-6 border-0 border-t border-rule" />
+        </header>
+
+        <div className="mt-8">
           <MDXRemote source={post.content} components={mdxComponents} />
         </div>
-      </article>
+
+          <p className="mt-16 text-body-sm text-ink-muted">
+            By {post.frontmatter.author}
+          </p>
+        </article>
+      </div>
 
       {related ? (
-        <section className="mx-auto w-full max-w-prose px-section pb-12">
+        <section className="mx-auto w-full max-w-[720px] px-section pb-12">
           <div className="rounded-card border-hairline border-rule bg-paper-card p-8">
             <p className="text-eyebrow uppercase text-ink-muted">Read next</p>
             <Link
