@@ -68,7 +68,7 @@ export function AreaChart({
           </>
         )}
         {months?.map((m, i) => (
-          <text key={i} x={xs[i]} y={height - 8} fontSize="10" fill="#a8a2bc" textAnchor="middle" fontFamily="Inter">
+          <text key={i} x={xs[i]} y={height - 8} fontSize="10" fill="#a8a2bc" textAnchor="middle">
             {m}
           </text>
         ))}
@@ -125,7 +125,7 @@ export function DonutChart({
         <path key={i} d={a.path} stroke={a.color} strokeWidth={thickness} fill="none" strokeLinecap="butt" />
       ))}
       {centerLabel && (
-        <text x={cx} y={cy + 4} textAnchor="middle" fontSize="20" fontWeight="800" fill="#1a1530" fontFamily="Inter">
+        <text x={cx} y={cy + 4} textAnchor="middle" fontSize="20" fontWeight="700" fill="#1a1530">
           {centerLabel}
         </text>
       )}
@@ -141,45 +141,62 @@ export function BarChart({
   height = 220,
   max,
   yTicks = 5,
+  groupColors,
+  fillHeight,
 }: {
   groups: string[];
   series: Series[];
   height?: number;
   max?: number;
   yTicks?: number;
+  groupColors?: string[];
+  fillHeight?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [w, setW] = useState(500);
+  const [h, setH] = useState(height);
 
   useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const ro = new ResizeObserver(([e]) => setW(e.contentRect.width));
+    const ro = new ResizeObserver(([e]) => {
+      setW(e.contentRect.width);
+      if (fillHeight) setH(Math.max(80, e.contentRect.height));
+    });
     ro.observe(el);
-    setW(el.getBoundingClientRect().width);
+    const rect = el.getBoundingClientRect();
+    setW(rect.width);
+    if (fillHeight) setH(Math.max(80, rect.height));
     return () => ro.disconnect();
-  }, []);
+  }, [fillHeight]);
 
   const pad = { l: 28, r: 8, t: 8, b: 22 };
   const innerW = Math.max(10, w - pad.l - pad.r);
-  const innerH = height - pad.t - pad.b;
+  const innerH = h - pad.t - pad.b;
   const allValues = series.flatMap((s) => s.values).filter((v): v is number => v != null);
-  const yMax = max || Math.ceil(Math.max(...allValues, 1) / 100) * 100;
+  const yMax =
+    max ||
+    (() => {
+      const peak = Math.max(...allValues, 1);
+      if (peak <= 10) return Math.ceil(peak + 1);
+      if (peak <= 50) return Math.ceil(peak / 5) * 5;
+      return Math.ceil(peak / 100) * 100;
+    })();
 
   const groupW = innerW / groups.length;
   const barAreaW = groupW * 0.75;
   const barW = barAreaW / Math.max(1, series.length);
 
   return (
-    <div ref={ref} style={{ position: "relative", width: "100%" }}>
-      <svg width={w} height={height} style={{ display: "block" }}>
+    <div ref={ref} style={{ position: "relative", width: "100%", height: fillHeight ? "100%" : undefined }}>
+      <svg width={w} height={h} style={{ display: "block" }}>
         {Array.from({ length: yTicks + 1 }).map((_, i) => {
           const y = pad.t + (innerH * i) / yTicks;
           const val = Math.round(yMax * (1 - i / yTicks));
           return (
             <g key={i}>
               <line x1={pad.l} y1={y} x2={pad.l + innerW} y2={y} stroke="#f0eef7" strokeWidth="1" />
-              <text x={pad.l - 6} y={y + 3} fontSize="9" fill="#a8a2bc" textAnchor="end" fontFamily="Inter">
+              <text x={pad.l - 6} y={y + 3} fontSize="9" fill="#a8a2bc" textAnchor="end">
                 {val}
               </text>
             </g>
@@ -192,12 +209,12 @@ export function BarChart({
               {series.map((s, si) => {
                 const v = s.values[gi];
                 if (v == null) return null;
-                const h = (v / yMax) * innerH;
+                const bh = (v / yMax) * innerH;
                 const x = gx + si * barW;
-                const y = pad.t + innerH - h;
-                return <rect key={si} className="pd-bar" x={x + 1} y={y} width={barW - 2} height={h} fill={s.color} rx="2" opacity="0.95" />;
+                const y = pad.t + innerH - bh;
+                return <rect key={si} className="pd-bar" x={x + 1} y={y} width={barW - 2} height={bh} fill={groupColors?.[gi] ?? s.color} rx="2" opacity="0.95" />;
               })}
-              <text x={gx + barAreaW / 2} y={height - 6} fontSize="10" fill="#a8a2bc" textAnchor="middle" fontFamily="Inter">
+              <text x={gx + barAreaW / 2} y={h - 6} fontSize="10" fill="#a8a2bc" textAnchor="middle">
                 {g}
               </text>
             </g>
@@ -244,7 +261,7 @@ export function ScatterChart({
           return (
             <g key={i}>
               <line x1={x} y1={pad.t} x2={x} y2={pad.t + innerH} stroke="#f0eef7" strokeDasharray="3,3" />
-              <text x={x} y={height - 8} fontSize="10" fill="#a8a2bc" textAnchor="middle" fontFamily="Inter">
+              <text x={x} y={height - 8} fontSize="10" fill="#a8a2bc" textAnchor="middle">
                 {t}y
               </text>
             </g>
@@ -255,7 +272,7 @@ export function ScatterChart({
           return (
             <g key={i}>
               <line x1={x} y1={pad.t} x2={x} y2={pad.t + innerH} stroke="#e0436b" strokeWidth="1.5" strokeDasharray="3,3" />
-              <text x={x + 6} y={pad.t + 10} fontSize="10" fill="#e0436b" fontFamily="Inter" fontWeight="600">
+              <text x={x + 6} y={pad.t + 10} fontSize="10" fill="#e0436b" fontWeight="500">
                 {t}-year threshold
               </text>
             </g>

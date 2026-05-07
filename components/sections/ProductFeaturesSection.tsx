@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/animation/Reveal";
 import type { FeatureItem, RichFeature } from "@/lib/types";
@@ -8,6 +9,8 @@ type FeatureLike = FeatureItem | RichFeature;
 
 type ProductFeaturesSectionProps = {
   features: FeatureLike[];
+  /** Optional illustrations rendered in the sticky right column, indexed by feature. */
+  illustrations?: ReactNode[];
 };
 
 const PLACEHOLDER_COLORS = [
@@ -27,7 +30,7 @@ function keyFor(f: FeatureLike) {
   return isRichFeature(f) ? f.headline : f.leadPhrase;
 }
 
-export function ProductFeaturesSection({ features }: ProductFeaturesSectionProps) {
+export function ProductFeaturesSection({ features, illustrations }: ProductFeaturesSectionProps) {
   const [active, setActive] = useState(0);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -74,19 +77,28 @@ export function ProductFeaturesSection({ features }: ProductFeaturesSectionProps
           ))}
         </div>
 
-        {/* Right: sticky placeholder, fades between features. */}
+        {/* Right: sticky illustration, cross-fades between features. */}
         <div className="hidden md:block">
           <div className="sticky top-24 h-[70vh]">
-            <div className="relative h-full w-full">
-              {features.map((f, i) => (
-                <div
-                  key={keyFor(f)}
-                  aria-hidden
-                  className={`absolute inset-0 rounded-card transition-opacity duration-500 ease-out ${
-                    PLACEHOLDER_COLORS[i % PLACEHOLDER_COLORS.length]
-                  } ${active === i ? "opacity-100" : "opacity-0"}`}
-                />
-              ))}
+            <div className="relative flex h-full w-full items-center justify-center">
+              {features.map((f, i) => {
+                const illustration = illustrations?.[i];
+                return (
+                  <div
+                    key={keyFor(f)}
+                    aria-hidden
+                    className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ease-out ${
+                      active === i ? "opacity-100" : "opacity-0"
+                    }`}
+                  >
+                    {illustration ?? (
+                      <div
+                        className={`h-full w-full rounded-card ${PLACEHOLDER_COLORS[i % PLACEHOLDER_COLORS.length]}`}
+                      />
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

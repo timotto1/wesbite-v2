@@ -240,36 +240,39 @@ export const landing = {
     headline: "Housing Associations running Shared Ownership on Stairpay.",
     items: [
       {
-        haName: "Notting Hill Genesis",
-        headlineResult: "Cut staircasing case time from 14 weeks to 6.",
-        body: "Stairpay replaced four spreadsheets and an inbox with one platform. Cases that previously took a quarter now close in six weeks.",
+        haName: "Auxesia",
+        headlineResult: "Auxesia sees annual staircasing rates within 3 weeks of launch with Stairpay.",
+        body: "Three weeks after going live, Auxesia's first resident email outperformed every campaign they'd sent before — surfacing five live staircasing opportunities in the first seven days.",
         quote: {
-          text: "The first tool we've used that actually understands Shared Ownership.",
-          author: "[Verify: name pending]",
-          role: "Head of Sales, NHG",
+          text: "We have only been live for about three weeks, but our initial email's click-through rate outperformed any we've sent before. Within a week, we identified three individuals ready to fully staircase and two more interested but not yet ready to transact.",
+          author: "Claire Donnelly",
+          role: "Chief Financial Officer",
         },
+        image: "https://picsum.photos/seed/auxesia-stairpay/800/960",
         href: "#",
       },
       {
         haName: "Midland Heart",
-        headlineResult: "3× more residents instructed staircasing in-app.",
+        headlineResult: "Midland Heart triples in-app staircasing instructions in 90 days.",
         body: "Affordability already on file means residents instruct the moment they're ready. Cases land in the team's workflow with the work already half done.",
         quote: {
           text: "We can finally answer the regulator's questions without a spreadsheet rebuild.",
           author: "[Verify: name pending]",
           role: "Director of Home Ownership",
         },
+        image: "https://picsum.photos/seed/midland-heart-stairpay/800/960",
         href: "#",
       },
       {
         haName: "Settle",
-        headlineResult: "Closed 90 days of compliance debt in a quarter.",
+        headlineResult: "Settle clears 90 days of compliance debt in a single quarter.",
         body: "Lease intelligence pulled the structured data out of decades of PDFs. Renewal events that used to be missed are now triggered automatically.",
         quote: {
           text: "We stopped reverse-engineering our own portfolio.",
           author: "[Verify: name pending]",
           role: "Head of Compliance",
         },
+        image: "https://picsum.photos/seed/settle-stairpay/800/960",
         href: "#",
       },
     ],
@@ -277,7 +280,7 @@ export const landing = {
   finalCta: {
     headline: "Ready to run Shared Ownership properly?",
     sub: "30-minute demo. We'll show you the platform with your own workflows in mind.",
-    primaryCta: { label: "Request demo", href: "/demo" },
+    primaryCta: { label: "Contact sales", href: "/demo" },
   },
 };
 

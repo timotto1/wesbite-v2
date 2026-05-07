@@ -98,7 +98,7 @@ export function DemoForm() {
         disabled={status === "submitting"}
         className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-[5px] bg-stairpay px-6 py-3 text-body-sm font-medium text-paper transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {status === "submitting" ? "Sending…" : "Request demo"}
+        {status === "submitting" ? "Sending…" : "Contact sales"}
       </button>
       <p className="mt-4 text-body-sm text-ink-light">
         We&rsquo;ll only use these details to arrange your demo.

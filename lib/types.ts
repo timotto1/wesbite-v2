@@ -77,6 +77,8 @@ export type CaseStudy = {
   body: string;
   quote: { text: string; author: string; role: string };
   href: string;
+  image?: string;
+  logo?: string;
 };
 
 export type ProductPageData = {

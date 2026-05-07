@@ -1,0 +1,1057 @@
+/*
+ * Scoped CSS for the staged Listings illustrations (Hero1 + Feat2..Feat5).
+ * Lifted verbatim from the design handoff (claude.ai/design — heroes.html),
+ * then namespaced under `.staged-listings` so the variables and shared
+ * `.panel` / `.pill` classes don't leak outside the illustration.
+ *
+ * The illustrations themselves render at fixed 1450 × 600 px and are
+ * scaled to fit their container by the StagedFrame wrapper using
+ * container query (cqi) units.
+ */
+
+.staged-listings {
+  --iris-50: #f4f0fe;
+  --iris-100: #e5dafb;
+  --iris-200: #d4c4f6;
+  --iris-300: #ae78f1;
+  --iris-400: #8a4deb;
+  --iris-500: #7114e2;
+  --iris-600: #4e1a8f;
+  --iris-700: #26045d;
+
+  --ink: #1b0846;
+  --ink-2: #4e1a8f;
+  --muted: #87858e;
+  --soft: #c9c5d6;
+  --border: #e3e2e4;
+  --border-soft: #ecebf1;
+  --surface: #ffffff;
+  --sunken: #f8f7fb;
+
+  --green-100: #dcf9ed;
+  --green-500: #0f8a5f;
+  --yellow-100: #fce4c5;
+  --yellow-500: #b46b14;
+  --red-100: #fadbe0;
+  --red-500: #d64b4c;
+  --blue-100: #dbe7ff;
+  --blue-500: #2e5bff;
+
+  color: var(--ink);
+}
+
+.staged-listings * {
+  box-sizing: border-box;
+}
+
+/* ---------- frame wrapper: 1450×600 design canvas, scaled to fit ---------- */
+.staged-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1450 / 600;
+  container-type: inline-size;
+}
+
+.staged-frame > .staged-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1450px;
+  height: 600px;
+  transform-origin: top left;
+  transform: scale(calc(100cqi / 1450px));
+}
+
+/* ---------- Hero / feature shared ----------
+   .hero / .feat fill the canvas; the canvas itself is sized in pixels
+   by StagedFrame and scaled to fit its container. */
+.staged-listings .hero {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: visible;
+  background: transparent;
+  isolation: isolate;
+}
+
+.staged-listings .feat {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  display: grid;
+  place-items: center;
+}
+
+.staged-listings .feat .frame {
+  position: relative;
+  z-index: 1;
+  width: 1180px;
+  min-height: 460px;
+}
+
+/* ---------- panels (shared) ---------- */
+.staged-listings .panel {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow:
+    0 1px 0 rgba(38, 4, 93, 0.04),
+    0 30px 60px -20px rgba(20, 4, 60, 0.45),
+    0 12px 24px -10px rgba(20, 4, 60, 0.3);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.staged-listings .panel.layered {
+  box-shadow:
+    0 25px 50px -15px rgba(10, 2, 40, 0.55),
+    0 8px 16px -6px rgba(10, 2, 40, 0.4);
+}
+
+.staged-listings .ph-row {
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.staged-listings .ph-row + .ph-row {
+  border-top: 1px solid var(--border-soft);
+}
+
+.staged-listings .num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+.staged-listings .mono {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.staged-listings .pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.staged-listings .pill .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.staged-listings .pill.green {
+  background: var(--green-100);
+  color: var(--green-500);
+}
+
+/* ============================================================
+   HERO 1 — LISTINGS  (multi-portal syndication)
+   ============================================================ */
+.staged-listings .h1 .main {
+  position: absolute;
+  top: 240px;
+  left: 340px;
+  width: 700px;
+  z-index: 2;
+}
+.staged-listings .h1 .main .head {
+  display: flex;
+  gap: 14px;
+  padding: 18px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.staged-listings .h1 .main .thumb {
+  width: 96px;
+  height: 76px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #e5dafb 0%, #c9b8f0 100%);
+  position: relative;
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+.staged-listings .h1 .main .thumb::before {
+  content: "";
+  position: absolute;
+  inset: 14px 12px 0;
+  background: #fff;
+  border-radius: 4px 4px 0 0;
+  clip-path: polygon(0 60%, 50% 0, 100% 60%, 100% 100%, 0 100%);
+  opacity: 0.9;
+}
+.staged-listings .h1 .main .thumb::after {
+  content: "";
+  position: absolute;
+  left: 38%;
+  bottom: 0;
+  width: 22%;
+  height: 30%;
+  background: #c9b8f0;
+}
+.staged-listings .h1 .head-info {
+  flex: 1;
+}
+.staged-listings .h1 .head-info .addr {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.staged-listings .h1 .head-info .scheme {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.staged-listings .h1 .head-info .ref {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 8px;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.staged-listings .h1 .share-block {
+  text-align: right;
+}
+.staged-listings .h1 .share-block .lab {
+  font-size: 10.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.staged-listings .h1 .share-block .v {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--iris-700);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-top: 4px;
+}
+.staged-listings .h1 .share-block .v small {
+  font-size: 16px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.staged-listings .h1 .fields {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.staged-listings .h1 .field {
+  padding: 14px 18px;
+  border-right: 1px solid var(--border-soft);
+}
+.staged-listings .h1 .field:last-child {
+  border-right: none;
+}
+.staged-listings .h1 .field .lab {
+  font-size: 10.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.staged-listings .h1 .field .v {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-top: 4px;
+}
+.staged-listings .h1 .field .v small {
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.staged-listings .h1 .activity {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 18px;
+  background: var(--sunken);
+  border-top: 1px solid var(--border-soft);
+}
+.staged-listings .h1 .activity .stat {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.staged-listings .h1 .activity .stat .n {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--iris-600);
+}
+.staged-listings .h1 .activity .stat .l {
+  font-size: 12px;
+  color: var(--muted);
+}
+.staged-listings .h1 .activity .spacer {
+  flex: 1;
+}
+.staged-listings .h1 .activity .ago {
+  font-size: 11px;
+  color: var(--muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.staged-listings .h1 .layered {
+  position: absolute;
+  top: 80px;
+  left: 80px;
+  width: 360px;
+  z-index: 1;
+}
+.staged-listings .h1 .layered .lh {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.staged-listings .h1 .layered .lh .t {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.staged-listings .h1 .layered .lh .syncing {
+  font-size: 11px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.staged-listings .h1 .layered .lh .syncing::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green-500);
+}
+.staged-listings .h1 .layered .pr {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  gap: 10px;
+}
+.staged-listings .h1 .layered .pr + .pr {
+  border-top: 1px solid var(--border-soft);
+}
+.staged-listings .h1 .layered .pr .pl-mark {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  background: var(--iris-50);
+  color: var(--iris-500);
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  flex: 0 0 auto;
+}
+.staged-listings .h1 .layered .pr .nm {
+  flex: 1;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.staged-listings .h1 .layered .pr .ts {
+  font-size: 11px;
+  color: var(--muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.staged-listings .h1 .layered .pr .st {
+  font-size: 11px;
+}
+.staged-listings .h1 .layered .pr .st.ok {
+  color: var(--green-500);
+}
+.staged-listings .h1 .layered .pr .st.warn {
+  color: var(--yellow-500);
+}
+
+/* ============================================================
+   F2 — Multi-portal syndication
+   ============================================================ */
+.staged-listings .f2 .stage {
+  position: relative;
+  height: 480px;
+}
+.staged-listings .f2 .center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 460px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 30px 60px -20px rgba(20, 4, 60, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  z-index: 3;
+}
+.staged-listings .f2 .center .ch {
+  display: flex;
+  gap: 12px;
+  padding: 14px 16px;
+  align-items: center;
+  border-bottom: 1px solid var(--border-soft);
+}
+.staged-listings .f2 .center .thumb {
+  width: 56px;
+  height: 44px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #e5dafb, #c9b8f0);
+  flex: 0 0 auto;
+}
+.staged-listings .f2 .center .nm {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.staged-listings .f2 .center .sub {
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.staged-listings .f2 .center .row {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-soft);
+  position: relative;
+}
+.staged-listings .f2 .center .row:last-child {
+  border-bottom: none;
+}
+.staged-listings .f2 .center .row .l {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.staged-listings .f2 .center .row .v {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.staged-listings .f2 .center .editing {
+  border: 2px solid var(--iris-500);
+  border-radius: 6px;
+  padding: 4px 10px;
+  background: var(--iris-50);
+  color: var(--iris-700);
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.staged-listings .f2 .center .editing::after {
+  content: "";
+  width: 1.5px;
+  height: 14px;
+  background: var(--iris-500);
+  animation: staged-listings-caret 1s steps(2) infinite;
+}
+@keyframes staged-listings-caret {
+  50% {
+    opacity: 0;
+  }
+}
+.staged-listings .f2 .tooltip {
+  position: absolute;
+  left: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--iris-700);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.staged-listings .f2 .tooltip::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-right-color: var(--iris-700);
+}
+
+.staged-listings .f2 .portal {
+  position: absolute;
+  width: 220px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px -15px rgba(20, 4, 60, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 14px;
+  z-index: 2;
+}
+.staged-listings .f2 .portal .ph {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.staged-listings .f2 .portal .pn {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.staged-listings .f2 .portal .pn .pm {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  background: var(--iris-50);
+  color: var(--iris-500);
+  display: grid;
+  place-items: center;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+.staged-listings .f2 .portal .live {
+  font-size: 10px;
+  color: var(--green-500);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.staged-listings .f2 .portal .live::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green-500);
+}
+.staged-listings .f2 .portal .pmeta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.staged-listings .f2 .portal .pmeta .l {
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.staged-listings .f2 .portal .pmeta .v {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-top: 2px;
+}
+.staged-listings .f2 .portal .pmeta .ts {
+  font-size: 10px;
+  color: var(--muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  margin-top: 4px;
+}
+
+.staged-listings .f2 .p-tl {
+  left: 60px;
+  top: 30px;
+}
+.staged-listings .f2 .p-tr {
+  right: 60px;
+  top: 30px;
+}
+.staged-listings .f2 .p-bl {
+  left: 60px;
+  bottom: 30px;
+}
+.staged-listings .f2 .p-br {
+  right: 60px;
+  bottom: 30px;
+}
+
+.staged-listings .f2 svg.lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ============================================================
+   F3 — Eligibility-aware applicant capture
+   ============================================================ */
+.staged-listings .f3 .frame {
+  position: relative;
+}
+.staged-listings .f3 .panel-main {
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 30px 60px -20px rgba(20, 4, 60, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+}
+.staged-listings .f3 .form {
+  padding: 22px;
+  border-right: 1px solid var(--border-soft);
+}
+.staged-listings .f3 .form .ft {
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.staged-listings .f3 .form .nm {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-top: 2px;
+}
+.staged-listings .f3 .form .grp {
+  margin-top: 16px;
+}
+.staged-listings .f3 .form .lab {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.staged-listings .f3 .form .input {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 13px;
+  color: var(--ink);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.staged-listings .f3 .form .input.focus {
+  border-color: var(--iris-500);
+  box-shadow: 0 0 0 3px var(--iris-100);
+}
+.staged-listings .f3 .form .input .chev {
+  color: var(--muted);
+}
+.staged-listings .f3 .form .seg {
+  display: flex;
+  gap: 6px;
+}
+.staged-listings .f3 .form .seg .s {
+  flex: 1;
+  padding: 7px 0;
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.staged-listings .f3 .form .seg .s.on {
+  background: var(--iris-700);
+  color: #fff;
+  border-color: var(--iris-700);
+}
+
+.staged-listings .f3 .checks {
+  padding: 22px;
+}
+.staged-listings .f3 .checks .ct {
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.staged-listings .f3 .checks .ch-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--border-soft);
+}
+.staged-listings .f3 .checks .ch-row:last-of-type {
+  border-bottom: none;
+}
+.staged-listings .f3 .checks .ck {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex: 0 0 auto;
+}
+.staged-listings .f3 .checks .ck.pass {
+  background: var(--green-100);
+  color: var(--green-500);
+}
+.staged-listings .f3 .checks .ck.fail {
+  background: var(--red-100);
+  color: var(--red-500);
+}
+.staged-listings .f3 .checks .ch-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  flex: 1;
+}
+.staged-listings .f3 .checks .ch-meta {
+  font-size: 11px;
+  color: var(--muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.staged-listings .f3 .panel-main .footer {
+  grid-column: 1 / -1;
+  padding: 16px 22px;
+  background: var(--green-100);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.staged-listings .f3 .panel-main .footer.fail {
+  background: var(--red-100);
+}
+.staged-listings .f3 .panel-main .footer .badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--green-500);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+.staged-listings .f3 .panel-main .footer.fail .badge {
+  background: var(--red-500);
+}
+.staged-listings .f3 .panel-main .footer .ftt {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.staged-listings .f3 .panel-main .footer .fts {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 1px;
+}
+
+.staged-listings .f3 .ghost {
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  right: 200px;
+  bottom: -20px;
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 20px 40px -15px rgba(20, 4, 60, 0.35);
+  opacity: 0.5;
+  z-index: 1;
+  transform: rotate(-1.2deg) translate(-30px, -30px);
+  pointer-events: none;
+}
+
+/* ============================================================
+   F4 — Case management (milestone tracker)
+   ============================================================ */
+.staged-listings .f4 .frame {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 30px 60px -20px rgba(20, 4, 60, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 38px 60px 32px;
+  width: 1280px;
+  min-height: 0;
+}
+.staged-listings .f4 .ct {
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.staged-listings .f4 .nm {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-top: 2px;
+}
+.staged-listings .f4 .nm small {
+  color: var(--muted);
+  font-weight: 500;
+  margin-left: 8px;
+  font-size: 12px;
+}
+
+.staged-listings .f4 .track {
+  position: relative;
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+.staged-listings .f4 .track::before {
+  content: "";
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  top: 18px;
+  height: 2px;
+  background: var(--border);
+}
+.staged-listings .f4 .track::after {
+  content: "";
+  position: absolute;
+  left: 4%;
+  top: 18px;
+  height: 2px;
+  width: 56%;
+  background: linear-gradient(90deg, var(--iris-700), var(--iris-400));
+}
+.staged-listings .f4 .stage {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.staged-listings .f4 .stage .node {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin: 0 auto;
+  background: #fff;
+  border: 2px solid var(--border);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: var(--muted);
+  font-size: 14px;
+}
+.staged-listings .f4 .stage.done .node {
+  background: var(--iris-700);
+  border-color: var(--iris-700);
+  color: #fff;
+}
+.staged-listings .f4 .stage.active .node {
+  background: #fff;
+  border-color: var(--iris-700);
+  color: var(--iris-700);
+  box-shadow: 0 0 0 4px var(--iris-100);
+}
+.staged-listings .f4 .stage .lab {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-top: 12px;
+}
+.staged-listings .f4 .stage .dt {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.staged-listings .f4 .stage.active .dt {
+  color: var(--iris-500);
+  font-weight: 600;
+}
+.staged-listings .f4 .stage .sla {
+  margin-top: 10px;
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--yellow-100);
+  color: var(--yellow-500);
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+.staged-listings .f4 .auto {
+  margin-top: 36px;
+  padding: 14px 18px;
+  background: var(--iris-50);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.staged-listings .f4 .auto .ico {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--iris-700);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+}
+.staged-listings .f4 .auto .at {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.staged-listings .f4 .auto .at b {
+  color: var(--iris-700);
+}
+.staged-listings .f4 .auto .ts {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ============================================================
+   F5 — Sales velocity reporting
+   ============================================================ */
+.staged-listings .f5 .frame {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 30px 60px -20px rgba(20, 4, 60, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 28px 30px;
+  width: 1180px;
+}
+.staged-listings .f5 .kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.staged-listings .f5 .kpi {
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 18px;
+}
+.staged-listings .f5 .kpi .l {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.staged-listings .f5 .kpi .row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 6px;
+}
+.staged-listings .f5 .kpi .n {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--iris-700);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.staged-listings .f5 .kpi .d {
+  font-size: 11px;
+  color: var(--green-500);
+  font-weight: 600;
+  padding: 2px 6px;
+  background: var(--green-100);
+  border-radius: 4px;
+}
+.staged-listings .f5 .kpi .d.red {
+  color: var(--red-500);
+  background: var(--red-100);
+}
+
+.staged-listings .f5 .charts {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 24px;
+}
+.staged-listings .f5 .funnel {
+  padding: 8px 4px;
+}
+.staged-listings .f5 .funnel .ft {
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.staged-listings .f5 .funnel .stages {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.staged-listings .f5 .funnel .stage {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.staged-listings .f5 .funnel .bar {
+  height: 30px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--iris-700), var(--iris-400));
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.staged-listings .f5 .funnel .lab {
+  width: 110px;
+  font-size: 12px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.staged-listings .f5 .funnel .pct {
+  font-size: 11px;
+  color: var(--muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  width: 50px;
+  text-align: right;
+}
+
+.staged-listings .f5 .donut {
+  padding: 8px 4px;
+}
+.staged-listings .f5 .donut .dt {
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.staged-listings .f5 .donut .wrap {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 14px;
+}
+.staged-listings .f5 .donut svg {
+  width: 160px;
+  height: 160px;
+  flex: 0 0 auto;
+}
+.staged-listings .f5 .donut .leg {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.staged-listings .f5 .donut .li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+}
+.staged-listings .f5 .donut .li .sw {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex: 0 0 auto;
+}
+.staged-listings .f5 .donut .li .nm {
+  color: var(--ink);
+  font-weight: 500;
+  flex: 1;
+}
+.staged-listings .f5 .donut .li .vl {
+  color: var(--muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11.5px;
+}

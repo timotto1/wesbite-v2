@@ -8,6 +8,7 @@ import { FinancePreview } from "@/components/sections/previews/FinancePreview";
 import { CompliancePreview } from "@/components/sections/previews/CompliancePreview";
 import { CommsPreview } from "@/components/sections/previews/CommsPreview";
 import { ResidentPortalPreview } from "@/components/sections/previews/ResidentPortalPreview";
+import { AftersalesPreview } from "@/components/sections/previews/AftersalesPreview";
 import { ListingsModalPreview } from "@/components/sections/previews/ListingsModalPreview";
 
 type Product = {
@@ -29,11 +30,22 @@ const SPAN_BY_SLUG: Record<string, string> = {
   aftersales: "lg:col-span-3",
 };
 
+const SHORT_BY_SLUG: Record<string, string> = {
+  listings: "mb-[-72px]",
+  "resident-portal": "mb-[-72px]",
+};
+
 export function ProductSuiteGrid({ headline, headlineMuted, products }: ProductSuiteGridProps) {
   const [active, setActive] = useState<Product | null>(null);
 
   return (
-    <section className="border-t border-rule">
+    <section
+      className="border-t border-rule bg-white"
+      style={{
+        marginLeft: "calc(50% - 50vw)",
+        marginRight: "calc(50% - 50vw)",
+      }}
+    >
       <div className="mx-auto w-full max-w-page px-section py-24">
         <Reveal>
           <h3 className="max-w-3xl text-heading-md !font-medium md:text-heading-lg">
@@ -54,7 +66,7 @@ export function ProductSuiteGrid({ headline, headlineMuted, products }: ProductS
                     setActive(p);
                   }
                 }}
-                className="group relative flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-card bg-paper-card p-8 text-left transition-transform duration-300 ease-out hover:scale-[1.015]"
+                className={`group relative flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-card bg-paper p-8 text-left transition-transform duration-300 ease-out hover:scale-[1.015] ${SHORT_BY_SLUG[p.slug] ?? ""}`}
               >
                 <span
                   aria-hidden
@@ -75,7 +87,7 @@ export function ProductSuiteGrid({ headline, headlineMuted, products }: ProductS
                   </svg>
                 </span>
                 <p className="text-eyebrow uppercase text-ink-muted">{p.name}</p>
-                <p className="mt-4 text-heading-md text-ink transition-colors duration-200 group-hover:text-stairpay">
+                <p className="mt-4 text-heading-md !font-medium text-ink transition-colors duration-200 group-hover:text-stairpay">
                   {p.outcome}
                 </p>
                 {p.slug === "listings" ? (
@@ -91,12 +103,16 @@ export function ProductSuiteGrid({ headline, headlineMuted, products }: ProductS
                     <CompliancePreview />
                   </div>
                 ) : p.slug === "comms" ? (
-                  <div aria-hidden className="mt-8 aspect-[5/4] w-full">
+                  <div aria-hidden className="mt-8 aspect-[5/4] w-full min-h-0 overflow-hidden">
                     <CommsPreview />
                   </div>
                 ) : p.slug === "resident-portal" ? (
                   <div aria-hidden className="mt-8 w-full flex-1 min-h-0">
                     <ResidentPortalPreview />
+                  </div>
+                ) : p.slug === "aftersales" ? (
+                  <div aria-hidden className="mt-8 aspect-[16/6] w-full">
+                    <AftersalesPreview />
                   </div>
                 ) : (
                   <div aria-hidden className="mt-8 aspect-[16/10] w-full" />

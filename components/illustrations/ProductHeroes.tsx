@@ -1,57 +1,10 @@
 import { IllustrationFrame } from "./IllustrationFrame";
+import { StagedListingsHero } from "./staged/StagedListings";
 
 const FONT = "Poppins, system-ui, sans-serif";
 
-/* Listings — applicant grid + foreground "Eligibility passed" insight card */
 export function ListingsHero() {
-  return (
-    <IllustrationFrame aspect="4-3" tone="panel">
-      <svg viewBox="0 0 800 600" className="absolute inset-0 h-full w-full" role="img" aria-label="Listings dashboard with applicants and an eligibility insight card">
-        {/* Map of new development tiles */}
-        <g transform="translate(48 60)">
-          <rect width="704" height="60" rx="10" fill="#FFFFFF" stroke="#E5E5DD" />
-          <text x="20" y="38" fontFamily={FONT} fontSize="13" fill="#1A1A1F" fontWeight="500">Greenford Vale · 38 homes</text>
-          <text x="220" y="38" fontFamily={FONT} fontSize="11" fill="#5C5C66">Phase 2 · launching 14 May</text>
-          <rect x="600" y="20" width="80" height="20" rx="10" fill="#F0EBF8" />
-          <text x="615" y="34" fontFamily={FONT} fontSize="10" letterSpacing="1.5" fill="#26045D">LIVE</text>
-
-          {/* Applicants grid */}
-          {Array.from({ length: 12 }).map((_, i) => {
-            const col = i % 4;
-            const row = Math.floor(i / 4);
-            const x = col * 178;
-            const y = 80 + row * 110;
-            const isHighlighted = i === 5;
-            return (
-              <g key={i} transform={`translate(${x} ${y})`}>
-                <rect width="170" height="96" rx="8" fill={isHighlighted ? "#F0EBF8" : "#FFFFFF"} stroke={isHighlighted ? "#26045D" : "#E5E5DD"} />
-                <circle cx="22" cy="28" r="11" fill={isHighlighted ? "#26045D" : "#F2F2EC"} />
-                <rect x="42" y="20" width="86" height="8" rx="2" fill={isHighlighted ? "#26045D" : "#1A1A1F"} />
-                <rect x="42" y="34" width="60" height="6" rx="2" fill="#9094A0" />
-                <rect x="14" y="60" width="142" height="4" rx="2" fill="#F2F2EC" />
-                <rect x="14" y="60" width={20 + (i * 11) % 100} height="4" rx="2" fill={isHighlighted ? "#26045D" : "#5C5C66"} />
-                <text x="14" y="80" fontFamily={FONT} fontSize="9" fill="#9094A0">
-                  {isHighlighted ? "92% match" : `${50 + (i * 7) % 40}% match`}
-                </text>
-              </g>
-            );
-          })}
-        </g>
-
-        {/* Foreground card */}
-        <g transform="translate(440 410)">
-          <rect x="-2" y="-2" width="332" height="148" rx="14" fill="#1A1A1F" opacity="0.04" />
-          <rect width="328" height="144" rx="12" fill="#FFFFFF" stroke="#26045D" />
-          <text x="20" y="34" fontFamily={FONT} fontSize="11" letterSpacing="2" fill="#26045D">ELIGIBILITY · AUTO-CHECKED</text>
-          <text x="20" y="64" fontFamily={FONT} fontSize="20" fontWeight="500" fill="#1A1A1F">Cleared in 4 minutes</text>
-          <text x="20" y="86" fontFamily={FONT} fontSize="12" fill="#5C5C66">Income, savings & local connection</text>
-          <text x="20" y="104" fontFamily={FONT} fontSize="12" fill="#5C5C66">all on file · scheme rules met</text>
-          <rect x="20" y="116" width="100" height="16" rx="8" fill="#F0EBF8" />
-          <text x="32" y="128" fontFamily={FONT} fontSize="10" letterSpacing="1.5" fill="#26045D">RESERVE →</text>
-        </g>
-      </svg>
-    </IllustrationFrame>
-  );
+  return <StagedListingsHero />;
 }
 
 /* Resident Portal — phone hero with affordability ring + structured tiles */

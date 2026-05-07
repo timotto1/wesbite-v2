@@ -51,9 +51,9 @@ const EXCHANGES: Exchange[] = [
 type Phase = "type-q" | "loading" | "type-a" | "shown" | "exiting";
 
 const Q_PER_CHAR_MS = 32;
-const A_PER_CHAR_MS = 14;
 const PAUSE_AFTER_Q_MS = 450;
-const LOADING_MS = 1400;
+const LOADING_MS = 2400;
+const READ_BEFORE_ACTIONS_MS = 700; // brief beat between answer appearing and action icons appearing
 const HOLD_AFTER_A_MS = 3000;
 const EXIT_MS = 500;
 const RESET_GAP_MS = 200;
@@ -111,8 +111,10 @@ export function CommsPreview() {
         await sleep(LOADING_MS);
         if (cancelled) return;
 
+        // Answer appears in full once loading finishes — no per-character typing.
         setPhase("type-a");
-        await typeUp(ex.answer, setALen, A_PER_CHAR_MS);
+        setALen(ex.answer.length);
+        await sleep(READ_BEFORE_ACTIONS_MS);
         if (cancelled) return;
 
         setPhase("shown");
@@ -152,14 +154,16 @@ export function CommsPreview() {
     <div
       className={`relative h-full w-full ${isExiting ? "animate-comms-exit-fade" : ""}`}
     >
-      <div className="flex h-full flex-col justify-end gap-2.5 pb-10">
+      <div className="flex h-full flex-col justify-end pb-10">
         {showQuestion && <QuestionBubble text={visibleQ} />}
         {showReplySection && (
-          <div className="flex flex-col gap-1.5">
-            <SenderRow sender={exchange.sender} />
-            {showLoadingDots && <LoadingBubble />}
-            {showAnswerBubble && <AnswerBubble text={visibleA} />}
-            {showActions && <ActionIcons />}
+          <div className="comms-section-enter overflow-hidden">
+            <div className="comms-section-content flex flex-col gap-1.5 pt-2.5">
+              <SenderRow sender={exchange.sender} />
+              {showLoadingDots && <LoadingBubble />}
+              {showAnswerBubble && <AnswerBubble text={visibleA} />}
+              {showActions && <ActionIcons />}
+            </div>
           </div>
         )}
       </div>
@@ -179,7 +183,7 @@ function QuestionBubble({ text }: { text: string }) {
 
 function AnswerBubble({ text }: { text: string }) {
   return (
-    <div className="comms-bubble-grow max-w-[92%] rounded-2xl border border-[#ECE9F0] bg-white px-4 py-3 text-[11px] leading-relaxed text-[#26045D] shadow-[0_1px_2px_rgba(38,4,93,0.04)]">
+    <div className="comms-answer-in max-w-[92%] rounded-2xl border border-[#ECE9F0] bg-white px-4 py-3 text-[11px] leading-relaxed text-[#26045D] shadow-[0_1px_2px_rgba(38,4,93,0.04)]">
       {text}
     </div>
   );

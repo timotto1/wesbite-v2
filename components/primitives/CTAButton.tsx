@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import type { MouseEvent } from "react";
+import { useContactPanel } from "@/components/contact/ContactPanelContext";
 
 type CTAButtonProps = {
   variant: "primary" | "secondary";
@@ -16,9 +20,29 @@ const VARIANT: Record<CTAButtonProps["variant"], string> = {
   secondary: "border-ink bg-transparent text-ink hover:bg-ink hover:text-paper",
 };
 
+/** Hrefs that should open the contact slide-out instead of navigating. */
+function isContactHref(href: string) {
+  return href === "/demo";
+}
+
 export function CTAButton({ variant, href, label, arrow = false, className = "" }: CTAButtonProps) {
+  const panel = useContactPanel();
+  const opensPanel = panel != null && isContactHref(href);
+
+  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    if (!opensPanel) return;
+    // Honour the user's intent to open in a new tab / save target.
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    e.preventDefault();
+    panel.open();
+  };
+
   return (
-    <Link href={href} className={`${BASE} ${VARIANT[variant]} ${className}`}>
+    <Link
+      href={href}
+      onClick={handleClick}
+      className={`${BASE} ${VARIANT[variant]} ${className}`}
+    >
       <span>{label}</span>
       {arrow ? (
         <svg

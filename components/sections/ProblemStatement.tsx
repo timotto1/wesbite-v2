@@ -53,7 +53,7 @@ export function ProblemStatement({ headline, body }: ProblemStatementProps) {
       <div
         ref={wrapperRef}
         className="relative"
-        style={{ height: "180vh" }}
+        style={{ height: "220vh" }}
       >
         <div className="sticky top-0 flex h-screen items-center">
           <div className="mx-auto w-full max-w-page px-section">
@@ -64,14 +64,15 @@ export function ProblemStatement({ headline, body }: ProblemStatementProps) {
                 </h3>
               ) : null}
               <p
-                className={`${headline ? "mt-8" : ""} max-w-prose text-body-lg font-medium text-ink-light`}
+                className={`${headline ? "mt-8" : ""} max-w-prose text-body-lg font-medium`}
+                style={{ color: "#b9bdc6" }}
               >
                 {prefix}
                 {lastSentence.split("").map((ch, i) => (
                   <span
                     key={i}
                     style={{
-                      color: i < revealCount ? "var(--ink)" : "var(--ink-light)",
+                      color: i < revealCount ? "var(--ink)" : "#b9bdc6",
                       transition: "color 200ms ease-out",
                     }}
                   >

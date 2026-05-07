@@ -3,40 +3,66 @@ import Link from "next/link";
 type CaseStudyCardProps = {
   haName: string;
   headlineResult: string;
-  body: string;
-  quote: { text: string; author: string; role: string };
+  body?: string;
+  quote?: { text: string; author: string; role: string };
+  image?: string;
+  logo?: string;
   href: string;
 };
 
-export function CaseStudyCard({
-  haName,
-  headlineResult,
-  body,
-  quote,
-  href,
-}: CaseStudyCardProps) {
+export function CaseStudyCard({ haName, headlineResult, image, logo, href }: CaseStudyCardProps) {
   return (
     <Link
       href={href}
-      className="group relative flex h-full flex-col overflow-hidden rounded-card border-hairline border-rule bg-paper-card p-8 transition-all duration-300 hover:-translate-y-0.5 hover:border-stairpay"
+      className="group relative flex aspect-[5/6] flex-col overflow-hidden rounded-card transition-all duration-300 hover:-translate-y-0.5"
     >
-      {/* hover gradient ring */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 -top-16 h-32 bg-stairpay-soft opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-60"
+        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+        style={{
+          backgroundImage: image
+            ? `url(${image}), linear-gradient(135deg, #1f2538, #0f1320)`
+            : "linear-gradient(135deg, #1f2538, #0f1320)",
+        }}
       />
-      <p className="relative text-eyebrow uppercase text-ink-muted">{haName}</p>
-      <p className="relative mt-4 text-heading-lg font-light text-stairpay">
-        {headlineResult}
-      </p>
-      <p className="relative mt-4 text-body-md text-ink-muted">{body}</p>
-      <blockquote className="relative mt-8 border-t border-hairline border-rule pt-6">
-        <p className="text-body-md text-ink">&ldquo;{quote.text}&rdquo;</p>
-        <footer className="mt-3 text-body-sm text-ink-muted">
-          <span className="font-medium text-ink">{quote.author}</span>
-          <span> · {quote.role}</span>
-        </footer>
-      </blockquote>
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/85"
+      />
+      <div className="relative flex flex-1 flex-col p-7 text-white">
+        <div className="flex items-center">
+          {logo ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={logo} alt={haName} className="h-7 w-auto select-none" />
+          ) : (
+            <PlaceholderLogo name={haName} />
+          )}
+        </div>
+        <h3 className="mt-auto max-w-[95%] text-[22px] font-semibold leading-[1.18] tracking-tight text-white md:text-[24px]">
+          {headlineResult}
+        </h3>
+      </div>
     </Link>
+  );
+}
+
+function PlaceholderLogo({ name }: { name: string }) {
+  return (
+    <span className="inline-flex items-center gap-2 text-white">
+      <svg
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+        aria-hidden
+      >
+        <path d="M3 19 L12 5 L21 19" />
+        <path d="M8 19 L12 12 L16 19" />
+      </svg>
+      <span className="text-[12px] font-semibold uppercase tracking-[0.2em]">{name}</span>
+    </span>
   );
 }

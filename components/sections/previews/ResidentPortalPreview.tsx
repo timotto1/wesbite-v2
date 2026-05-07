@@ -5,14 +5,26 @@ import { useEffect, useRef, useState } from "react";
 /**
  * Composite illustration for the Resident Portal card.
  *
- * iPhone frame containing the resident dashboard. The user can click-and-drag
- * inside the screen to scroll the content vertically.
+ * iPhone-in-hand mockup PNG with the resident dashboard absolutely positioned
+ * over the phone's screen rect. The dashboard renders at its native size
+ * (192 x 402); the mockup is sized so its screen exactly matches that, and
+ * the hand around the phone is clipped where it overflows the card.
  */
+
+// Constants derived from the centered mockup PNG (1814 x 1714, screen rect at
+// left=577, top=23, width=660, height=1441). Image is sized so the screen
+// width equals the dashboard width (192px); container size = mockup * 0.2909.
+const CONTAINER_W = 528;
+const CONTAINER_H = 499;
+const SCREEN_TOP = 4;
+const SCREEN_W = 192;
+const SCREEN_H = 402;
 
 export function ResidentPortalPreview() {
   // Stop interactions inside the phone from bubbling to the card button
   // (otherwise dragging would also fire the card's onClick).
   const stop = (e: React.SyntheticEvent) => e.stopPropagation();
+
   return (
     <div
       className="flex h-full w-full items-center justify-center"
@@ -20,14 +32,29 @@ export function ResidentPortalPreview() {
       onMouseDown={stop}
       onPointerDown={stop}
     >
-      {/* iPhone bezel — same frame and size as the listings card phone */}
-      <div className="relative h-[412px] w-[201px] flex-none rounded-[30px] bg-[#0B0820] p-[5px] shadow-[0_22px_40px_-12px_rgba(38,4,93,0.35)] ring-1 ring-black/20">
-        <div className="relative h-full w-full overflow-hidden rounded-[24px] bg-[#FBF9FF]">
+      <div
+        className="relative flex-none"
+        style={{ width: CONTAINER_W, height: CONTAINER_H, transform: "translateY(36px)" }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/mockup/iphone-hand-mockup-centered.png"
+          alt=""
+          aria-hidden
+          className="pointer-events-none absolute inset-0 h-full w-full select-none"
+        />
+        <div
+          className="absolute left-1/2 -translate-x-1/2 overflow-hidden bg-[#FBF9FF]"
+          style={{
+            top: SCREEN_TOP,
+            width: SCREEN_W,
+            height: SCREEN_H,
+            borderRadius: 30,
+          }}
+        >
           <DraggableScrollArea>
             <ResidentAppContent />
           </DraggableScrollArea>
-          {/* Dynamic Island */}
-          <div className="pointer-events-none absolute left-1/2 top-[6px] z-10 h-[14px] w-[44px] -translate-x-1/2 rounded-full bg-black" />
         </div>
       </div>
     </div>

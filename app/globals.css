@@ -184,6 +184,41 @@
     animation: comms-exit-fade 500ms ease-out forwards;
   }
 
+  /* Reply section entrance — runs in two stages so the sent question bubble
+     travels up first, then the reply contents appear.
+
+     1. Wrapper's max-height grows from 0 to its natural height. Because the
+        wrapper sits below the question in a flex `justify-end` column, the
+        question is pushed up smoothly as the wrapper grows — this is the
+        "travel from the bottom" of the sent bubble.
+     2. Inner content (sender row + loading bubble) fades in after the
+        wrapper has finished growing, so the reply only "starts" once the
+        question has settled into its new position. */
+  @keyframes comms-section-grow {
+    from { max-height: 0; }
+    to   { max-height: 600px; }
+  }
+  .comms-section-enter {
+    animation: comms-section-grow 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  @keyframes comms-section-content-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .comms-section-content {
+    animation: comms-section-content-in 320ms ease-out 460ms both;
+  }
+
+  /* Answer bubble fade-in — replaces the loading dots once the response is
+     ready. Soft fade and lift so the swap doesn't pop. */
+  @keyframes comms-answer-in {
+    from { opacity: 0; transform: translateY(3px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .comms-answer-in {
+    animation: comms-answer-in 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
   /* Compliance-preview swap — outgoing fades out first, then a short pause,
      then the incoming fades in. Pulse subtly compresses the card during
      the swap so the change feels like a press. */
@@ -248,6 +283,31 @@
   }
   .animate-listing-slide-in-y {
     animation: listing-slide-in-y 1200ms cubic-bezier(0.32, 0.72, 0, 1) both;
+  }
+
+  /* Aftersales — when the resident submits, a new row lands at the top of
+     the case-management table. Brief purple tint plus a fade-in so the eye
+     catches the change. Higher specificity overrides the default pd-rowIn
+     animation that the table cascades onto every row. */
+  @keyframes case-new-row-in {
+    0%   { background-color: rgba(91, 63, 214, 0.22); opacity: 0; }
+    20%  { opacity: 1; }
+    100% { background-color: rgba(91, 63, 214, 0); opacity: 1; }
+  }
+  .product-demo-scope .pd-table tbody tr.case-new-row {
+    animation: case-new-row-in 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* Aftersales steps — fires on each circle/text the moment it activates.
+     Reads as a press: quick compress, slower release, no overshoot. */
+  @keyframes step-pop {
+    0%   { transform: scale(1); }
+    35%  { transform: scale(0.95); }
+    100% { transform: scale(1); }
+  }
+  .animate-step-pop {
+    animation: step-pop 280ms cubic-bezier(0.33, 0, 0.2, 1) both;
+    transform-origin: center;
   }
 
 
@@ -355,5 +415,8 @@
   .animate-compliance-card-pulse,
   .animate-comms-cursor,
   .animate-comms-dot,
-  .animate-comms-exit-fade { animation: none; }
+  .animate-comms-exit-fade,
+  .comms-section-enter,
+  .comms-section-content,
+  .comms-answer-in { animation: none; }
 }

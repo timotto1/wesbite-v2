@@ -29,9 +29,9 @@ const NAV: { group: string; items: { id: ViewId; label: string; icon: IconKey }[
   {
     group: "Residents",
     items: [
+      { id: "insights", label: "Insights", icon: "Insights" },
       { id: "case", label: "Case management", icon: "CaseMgmt" },
       { id: "reporting", label: "Reporting", icon: "Reporting" },
-      { id: "insights", label: "Insights", icon: "Insights" },
     ],
   },
   {
@@ -64,6 +64,8 @@ const VIEW_FOR: Record<ViewId, { url: string; Component: () => JSX.Element }> = 
 
 export function ProductDemoWindow() {
   const [active, setActive] = useState<ViewId>("case");
+  const [hovered, setHovered] = useState<ViewId | null>(null);
+  const [collapsed, setCollapsed] = useState(false);
   const mainRef = useRef<HTMLElement>(null);
 
   // Drag state — bounded within the stage
@@ -162,15 +164,31 @@ export function ProductDemoWindow() {
         </div>
 
         <div className="pd-app">
-          <aside className="pd-sidebar">
+          <aside className={`pd-sidebar ${collapsed ? "collapsed" : ""}`}>
             <div className="pd-org">
               <div className="who">
-                <span style={{ color: "var(--pd-magenta)", fontWeight: 700 }}>Tim</span>
+                <span style={{ color: "var(--pd-primary)", fontWeight: 600 }}>Tim</span>
                 <span className="slash">/</span>
                 <span>Landlord</span>
                 <Icon.Caret style={{ width: 12, height: 12, opacity: 0.5 }} />
               </div>
-              <div className="pd-search-i"><Icon.Search style={{ width: 13, height: 13 }} /></div>
+              <button
+                type="button"
+                className="pd-search-i"
+                onClick={() => setCollapsed((c) => !c)}
+                title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+                aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+                style={{ border: "none", background: "transparent" }}
+              >
+                <Icon.Collapse
+                  style={{
+                    width: 14,
+                    height: 14,
+                    transform: collapsed ? "rotate(180deg)" : undefined,
+                    transition: "transform 200ms ease",
+                  }}
+                />
+              </button>
             </div>
 
             {NAV.map((group, gi) => (
@@ -178,14 +196,19 @@ export function ProductDemoWindow() {
                 <div className="pd-nav-group-label">{group.group}</div>
                 {group.items.map((item) => {
                   const I = Icon[item.icon];
+                  const isActive = active === item.id;
+                  const isHovered = hovered === item.id;
                   return (
                     <button
                       key={item.id}
-                      className={`pd-nav-item ${active === item.id ? "active" : ""}`}
+                      className={`pd-nav-item ${isActive ? "active" : ""}`}
                       onClick={() => setActive(item.id)}
+                      onMouseEnter={() => setHovered(item.id)}
+                      onMouseLeave={() => setHovered((h) => (h === item.id ? null : h))}
                       type="button"
+                      title={collapsed ? item.label : undefined}
                     >
-                      <I style={{ width: 16, height: 16, flexShrink: 0, opacity: 0.85 }} />
+                      <I active={isActive || isHovered} style={{ width: 16, height: 16, flexShrink: 0, opacity: 0.85 }} />
                       <span>{item.label}</span>
                     </button>
                   );
@@ -194,8 +217,10 @@ export function ProductDemoWindow() {
             ))}
 
             <div className="pd-sidebar-foot">
-              <button className="pd-nav-item" type="button"><Icon.Help style={{ width: 14, height: 14 }} />Help</button>
-              <button className="pd-nav-item" type="button"><Icon.Collapse style={{ width: 14, height: 14 }} />Collapse</button>
+              <button className="pd-nav-item" type="button" title={collapsed ? "Help" : undefined}>
+                <Icon.Help style={{ width: 14, height: 14 }} />
+                <span>Help</span>
+              </button>
             </div>
           </aside>
 

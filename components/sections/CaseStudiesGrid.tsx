@@ -18,8 +18,8 @@ type CaseStudiesGridProps = {
 
 export function CaseStudiesGrid({ eyebrow, headline, items }: CaseStudiesGridProps) {
   return (
-    <section className="mx-auto w-full max-w-page px-section py-24">
-      <Reveal className="mx-auto max-w-prose">
+    <section className="mx-auto w-full max-w-page px-8 py-12 md:px-20 md:py-16 lg:px-28">
+      <Reveal>
         {eyebrow ? <EyebrowLabel>{eyebrow}</EyebrowLabel> : null}
         <h3 className="mt-4 text-heading-xl !font-medium text-ink md:text-display-lg">
           {headline}

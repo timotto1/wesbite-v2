@@ -101,7 +101,7 @@ export default function Styleguide() {
           <div>
             <EyebrowLabel>CTA buttons</EyebrowLabel>
             <div className="mt-4 flex flex-wrap items-center gap-4">
-              <CTAButton variant="primary" href="#" label="Request demo" arrow />
+              <CTAButton variant="primary" href="#" label="Contact sales" arrow />
               <CTAButton variant="primary" href="#" label="Sign up" />
               <CTAButton variant="secondary" href="#" label="Learn more" />
             </div>
@@ -195,7 +195,7 @@ export default function Styleguide() {
             eyebrow="Operating system for Shared Ownership"
             headline="The operating system for Shared Ownership."
             sub="One platform for every Housing Association workflow — connected directly to your residents."
-            primaryCta={{ label: "Request demo", href: "/demo" }}
+            primaryCta={{ label: "Contact sales", href: "/demo" }}
             illustration={<PlaceholderStaged label="Hero composition" />}
           />
 

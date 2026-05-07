@@ -111,7 +111,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
       <FinalCTA
         headline="Ready to run Shared Ownership properly?"
         sub="30-minute demo. We'll show you the platform with your own workflows in mind."
-        primaryCta={{ label: "Request demo", href: "/demo" }}
+        primaryCta={{ label: "Contact sales", href: "/demo" }}
       />
     </>
   );

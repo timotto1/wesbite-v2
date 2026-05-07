@@ -5,11 +5,10 @@ import { landing } from "@/content/landing";
 import { HeroStaged } from "@/components/sections/HeroStaged";
 import { FinanceFullHero } from "@/components/sections/FinanceFullHero";
 import { CommsFullHero } from "@/components/sections/CommsFullHero";
-import { ProblemStatement } from "@/components/sections/ProblemStatement";
 import { BenefitsRow } from "@/components/sections/BenefitsRow";
 import { ProductFeaturesSection } from "@/components/sections/ProductFeaturesSection";
 import { MetricsAnatomy } from "@/components/sections/MetricsAnatomy";
-import { FitsWith } from "@/components/sections/FitsWith";
+import { OnePlatformCarousel } from "@/components/sections/OnePlatformCarousel";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import {
   ListingsHero,
@@ -27,6 +26,21 @@ import {
   FinanceDiagram,
   AftersalesDiagram,
 } from "@/components/illustrations/ProductDiagrams";
+import {
+  StagedFeatSyndication,
+  StagedFeatEligibility,
+  StagedFeatCaseManagement,
+  StagedFeatVelocity,
+} from "@/components/illustrations/staged/StagedListings";
+
+const FEATURE_ILLUSTRATIONS: Record<string, React.ReactNode[]> = {
+  listings: [
+    <StagedFeatSyndication key="syndication" />,
+    <StagedFeatEligibility key="eligibility" />,
+    <StagedFeatCaseManagement key="case" />,
+    <StagedFeatVelocity key="velocity" />,
+  ],
+};
 
 const HEROES: Record<string, React.ReactNode> = {
   listings: <ListingsHero />,
@@ -83,6 +97,10 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
       {product.slug === "finance" ? <FinanceFullHero /> : null}
       {product.slug === "comms" ? <CommsFullHero /> : null}
 
+      {heroOnly ? (
+        <OnePlatformCarousel activeSlug={product.slug} />
+      ) : null}
+
       {!heroOnly ? (
         <>
           <HeroStaged
@@ -90,19 +108,18 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             headline={product.hero.headline}
             headlineMuted={product.hero.headlineMuted}
             sub={product.hero.sub}
-            primaryCta={{ label: "Request demo", href: "/demo" }}
+            primaryCta={{ label: "Contact sales", href: "/demo" }}
             illustration={HEROES[product.slug]}
           />
-
-          <ProblemStatement body={product.problem.body} />
 
           {benefits.length ? <BenefitsRow benefits={benefits} /> : null}
 
           <ProductFeaturesSection
             features={product.richFeatures ?? product.features.items}
+            illustrations={FEATURE_ILLUSTRATIONS[product.slug]}
           />
 
-          {product.metrics.length ? (
+          {product.slug === "aftersales" && product.metrics.length ? (
             <MetricsAnatomy
               eyebrow="In production"
               headline="The numbers behind it."
@@ -116,17 +133,12 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             />
           ) : null}
 
-          <FitsWith
-            eyebrow="One platform"
-            headline={product.fitsWith.headline}
-            body={product.fitsWith.body}
-            relatedProducts={product.fitsWith.relatedProducts}
-          />
+          <OnePlatformCarousel activeSlug={product.slug} />
 
           <FinalCTA
             headline={`See ${product.name} in your workflow.`}
             sub="30-minute demo. We'll show you the platform with your own workflows in mind."
-            primaryCta={{ label: "Request demo", href: "/demo" }}
+            primaryCta={{ label: "Contact sales", href: "/demo" }}
           />
         </>
       ) : null}
