@@ -46,7 +46,7 @@ export function ResidentPortalDiagram() {
         {/* HA */}
         <g transform="translate(40 60)">
           <rect width="240" height="300" rx="10" fill="#F2F2EC" />
-          <text x="20" y="32" fontFamily={FONT} fontSize="11" letterSpacing="1.5" fill="#5C5C66">HA WORKFLOW</text>
+          <text x="20" y="32" fontFamily={FONT} fontSize="11" letterSpacing="1.5" fill="#5C5C66">HOUSING ASSOCIATION WORKFLOW</text>
           {["Cases", "Documents", "Compliance", "Finance"].map((label, i) => (
             <g key={label} transform={`translate(20 ${52 + i * 56})`}>
               <rect width="200" height="40" rx="8" fill="#FFFFFF" stroke="#E5E5DD" />
@@ -249,7 +249,7 @@ export function AftersalesDiagram() {
 
         {/* Parties */}
         <g transform="translate(40 220)">
-          {["HA team", "Resident", "Solicitor", "Valuer"].map((name, i) => (
+          {["Housing Association team", "Resident", "Solicitor", "Valuer"].map((name, i) => (
             <g key={name} transform={`translate(0 ${i * 30})`}>
               <text x="0" y="14" fontFamily={FONT} fontSize="11" fill="#9094A0">{name}</text>
               <line x1="100" y1="10" x2="520" y2="10" stroke="#F2F2EC" />

@@ -44,7 +44,7 @@ const config: Config = {
         eyebrow: ["12px", { lineHeight: "1.4", letterSpacing: "0.08em", fontWeight: "500" }],
       },
       borderRadius: {
-        card: "12px",
+        card: "32px",
         pill: "9999px",
       },
       borderWidth: {

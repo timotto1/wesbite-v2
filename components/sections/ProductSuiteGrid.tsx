@@ -141,7 +141,7 @@ function ProductModal({ product, onClose }: { product: Product | null; onClose: 
       role="dialog"
       aria-modal="true"
       aria-label={`${product.name} details`}
-      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto px-4 pb-8 pt-[15vh] sm:px-6"
+      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto px-4 pb-0 pt-[6vh] sm:px-6"
     >
       <button
         type="button"

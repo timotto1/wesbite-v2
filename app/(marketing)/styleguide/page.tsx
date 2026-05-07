@@ -228,7 +228,7 @@ export default function Styleguide() {
             eyebrow="For Housing Associations"
             headline="Built for Housing Associations."
             headlineMuted="Used by their residents."
-            illustration={<PlaceholderStaged label="HA dashboard" />}
+            illustration={<PlaceholderStaged label="Housing Association dashboard" />}
             features={[
               {
                 leadPhrase: "Cases close faster.",
@@ -236,7 +236,7 @@ export default function Styleguide() {
               },
               {
                 leadPhrase: "Regulator-ready by default.",
-                body: "One source of truth, audited end to end — the answers the regulator wants are already in the platform.",
+                body: "One source of truth, audited end to end. The answers the regulator wants are already in the platform.",
               },
               {
                 leadPhrase: "Less time on admin, more time on residents.",
@@ -244,7 +244,7 @@ export default function Styleguide() {
               },
               {
                 leadPhrase: "Forecasts you can trust.",
-                body: "Asset and resident data combined in one model — not stitched together from spreadsheets the night before a board meeting.",
+                body: "Asset and resident data combined in one model. No stitching together from spreadsheets the night before a board meeting.",
                 inlineLink: { text: "See Finance →", href: "#" },
               },
             ]}
@@ -254,11 +254,11 @@ export default function Styleguide() {
             <EyebrowLabel>Pattern 3 — FeatureStack (no illustration)</EyebrowLabel>
           </div>
           <FeatureStack
-            headline="Why HAs choose Stairpay."
+            headline="Why Housing Associations choose Stairpay."
             features={[
               {
                 leadPhrase: "Deep Shared Ownership expertise.",
-                body: "Built with HAs from day one. Every workflow reflects how Shared Ownership actually works — leases, nomination periods, affordability, the lot.",
+                body: "Built with Housing Associations from day one. Every workflow reflects how Shared Ownership actually works — leases, nomination periods, affordability, the lot.",
               },
               {
                 leadPhrase: "Data and tech first.",
@@ -266,7 +266,7 @@ export default function Styleguide() {
               },
               {
                 leadPhrase: "End-to-end and two-sided.",
-                body: "The only platform that covers the full HA workflow and connects directly to the resident — so instructions, data, and documents flow without re-keying.",
+                body: "The only platform that covers the full Housing Association workflow and connects directly to the resident — so instructions, data, and documents flow without re-keying.",
               },
             ]}
           />
@@ -277,7 +277,7 @@ export default function Styleguide() {
           <DiagramSection
             eyebrow="The two-sided model"
             headline="One platform. Two sides. One source of truth."
-            body="Residents instruct staircasing, resales, and changes from their app. Those instructions land directly in the HA's workflow — no email, no re-keying, no lost context."
+            body="Residents instruct staircasing, resales, and changes from their app. Those instructions land directly in the Housing Association's workflow — no email, no re-keying, no lost context."
             diagram={<TwoSidedDiagram />}
             layout="diagram-right"
           />

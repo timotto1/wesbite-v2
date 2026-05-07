@@ -1,13 +1,14 @@
 export const landing = {
   hero: {
-    stat: { label: "of Shared Ownership homes use Stairpay", value: "33%" },
+    stat: { label: "Shared Owners are on Stairpay", value: "3" },
     headline: "The operating system for shared ownership",
     sub: "One platform for every Housing Association workflow — connected directly to your residents.",
     primaryCta: { label: "Contact sales", href: "/demo" },
     secondaryCta: { label: "Log in", href: "/login" },
   },
   logoStrip: {
-    intro: "Trusted by",
+    intro: "Trusted by a third of the industry, including",
+    introHighlight: "4 of the G15",
     logos: [
       { name: "Clarion", src: "/logos/grayscale/Clarion_greyscale.png" },
       { name: "Notting Hill Genesis", src: "/logos/grayscale/NHG_greyscale.png" },
@@ -27,9 +28,8 @@ export const landing = {
     ],
   },
   problem: {
-    headline:
-      "Shared Ownership runs on spreadsheets. The regulator has noticed.",
-    body: "A typical HA runs it across a legacy HMS, an inbox, a finance system, and three Excel files nobody trusts. Cases drag. Reports are reverse-engineered. Residents wait. Stairpay replaces the chaos with one platform, built for Shared Ownership.",
+    headline: "Shared Ownership has outdated tools.",
+    body: "Housing Associations are forced to use a legacy HMS, multiple inboxes, a finance system and outdated spreadsheets. Cases drag, reports are lost, residents wait. Stairpay is building the operating system of the future, replacing chaos with simplicity, guesswork with audit trails.",
   },
   builtFor: {
     headline: "Built for Housing Associations.",
@@ -112,7 +112,7 @@ export const landing = {
         name: "Aftersales",
         outcome: "Run staircasing and resales end to end.",
         proof:
-          "The original Stairpay product, and still the deepest in the market.",
+          "Market leading by design.",
         benefits: [
           "End-to-end staircasing workflow",
           "Resales from instruction to completion",
@@ -133,7 +133,7 @@ export const landing = {
         },
         {
           lead: "Regulator-ready by default.",
-          body: "One source of truth, audited end to end — the answers the regulator wants are already in the platform.",
+          body: "One source of truth, audited end to end. The answers the regulator wants are already in the platform.",
         },
         {
           lead: "Less time on admin, more time on residents.",
@@ -141,7 +141,7 @@ export const landing = {
         },
         {
           lead: "Forecasts you can trust.",
-          body: "Asset and resident data combined in one model — not stitched together from spreadsheets the night before a board meeting.",
+          body: "Asset and resident data combined in one model. No stitching together from spreadsheets the night before a board meeting.",
         },
       ],
     },
@@ -154,7 +154,7 @@ export const landing = {
         },
         {
           lead: "Affordability tracking.",
-          body: "Understand what you can afford to staircase, and when, without paying for advice you don't yet need.",
+          body: "Understand what you can afford to staircase, and plan your future with confidence.",
         },
         {
           lead: "Document storage.",
@@ -168,11 +168,11 @@ export const landing = {
     },
   },
   pillars: {
-    headline: "Why HAs choose Stairpay.",
+    headline: "Why Housing Associations choose Stairpay.",
     items: [
       {
         title: "Deep Shared Ownership expertise",
-        body: "Built with HAs from day one. Every workflow — leases, nominations, affordability — reflects how Shared Ownership actually works.",
+        body: "Built with Housing Associations from day one. Every workflow — leases, nominations, affordability — reflects how Shared Ownership actually works.",
         linkLabel: "Learn more about our approach",
         href: "/blog/built-for-shared-ownership",
       },
@@ -184,7 +184,7 @@ export const landing = {
       },
       {
         title: "End-to-end and two-sided",
-        body: "The only platform covering the full HA workflow and connecting directly to residents. No re-keying.",
+        body: "The only platform covering the full Housing Association workflow and connecting directly to residents. No re-keying.",
         linkLabel: "Learn more about how it fits together",
         href: "/blog/connecting-has-and-residents",
       },
@@ -220,7 +220,7 @@ export const landing = {
   integrations: {
     eyebrow: "Integrations",
     headline: "Plays well with the rest of your stack.",
-    body: "No rip-and-replace. Stairpay integrates with the housing management systems, finance systems, and document tools HAs already use.",
+    body: "No rip-and-replace. Stairpay integrates with the housing management systems, finance systems, and document tools Housing Associations already use.",
     categories: [
       {
         name: "Housing management systems",

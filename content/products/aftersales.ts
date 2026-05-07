@@ -10,7 +10,7 @@ export const aftersales: ProductPageData = {
   problem: {
     headline:
       "Staircasing and resales are the most painful in-life transactions in Shared Ownership.",
-    body: "Cases run for months across email threads, Word templates, and shared drives. Residents wait, solicitors chase, valuers go quiet, and the HA carries the case-management load alone. Stairpay was built here first: residents instruct in the app, the case opens automatically, and every party — solicitor, valuer, mortgage broker, HA team — works from a single live record through to completion.",
+    body: "Cases run for months across email threads, Word templates, and shared drives. Residents wait, solicitors chase, valuers go quiet, and the Housing Association carries the case-management load alone. Stairpay was built here first: residents instruct in the app, the case opens automatically, and every party — solicitor, valuer, mortgage broker, Housing Association team — works from a single live record through to completion.",
   },
   outcomes: [
     {
@@ -31,7 +31,7 @@ export const aftersales: ProductPageData = {
       template: "cards",
       headline: "Materially more staircasings, from the same residents",
       intro:
-        "Most HAs sit on a list of shared owners and wait for them to call. Stairpay scores intent continuously and runs nurture against it, so the residents most ready to staircase get the right prompt at the right time — and they instruct through your team rather than drifting to a broker.",
+        "Most Housing Associations sit on a list of shared owners and wait for them to call. Stairpay scores intent continuously and runs nurture against it, so the residents most ready to staircase get the right prompt at the right time — and they instruct through your team rather than drifting to a broker.",
       detail:
         "Every resident in your portfolio gets a propensity score that updates as their equity grows, as market and lender conditions shift, and as life events surface in your data. Stairpay runs the comms automatically — annual statements, equity progress, valuation prompts — tuned to where each resident sits. When a resident is ready, the instruction lands directly in your case manager.",
       cards: [
@@ -71,7 +71,7 @@ export const aftersales: ProductPageData = {
             "New mortgage product availability",
             "Comparable staircasings in the scheme",
             "Wider SO market activity",
-            "HA-specific custom signals",
+            "Housing Association-specific custom signals",
           ],
         },
       ],
@@ -80,7 +80,7 @@ export const aftersales: ProductPageData = {
       template: "workflow",
       headline: "Every case from instruction to completion, on one record",
       intro:
-        "A staircasing case touches the resident, the HA aftersales team, a RICS valuer, both solicitors, and often a mortgage broker. Stairpay runs the whole choreography on a single record — every party seeing what they need, every milestone timed, every chase automated.",
+        "A staircasing case touches the resident, the Housing Association aftersales team, a RICS valuer, both solicitors, and often a mortgage broker. Stairpay runs the whole choreography on a single record — every party seeing what they need, every milestone timed, every chase automated.",
       steps: [
         {
           heading: "Instruction lands",
@@ -92,7 +92,7 @@ export const aftersales: ProductPageData = {
         },
         {
           heading: "Solicitors and broker join",
-          body: "Role-scoped access for the resident's solicitor, the HA's solicitor, and the broker — no new accounts, no portal sprawl.",
+          body: "Role-scoped access for the resident's solicitor, the Housing Association's solicitor, and the broker — no new accounts, no portal sprawl.",
         },
         {
           heading: "SLAs run in the background",
@@ -145,7 +145,7 @@ export const aftersales: ProductPageData = {
     { label: "AUTO-HANDLED CASE EVENTS", value: "[verify]%" },
   ],
   diagramBrief:
-    "Case-timeline diagram: instruction → KYC → valuation → solicitor → completion, with the HA, resident, and third parties all reading from the same horizontal record. One purple highlight on the instruction node.",
+    "Case-timeline diagram: instruction → KYC → valuation → solicitor → completion, with the Housing Association, resident, and third parties all reading from the same horizontal record. One purple highlight on the instruction node.",
   fitsWith: {
     headline: "Where Aftersales sits in the platform.",
     body: "Aftersales is the workflow Stairpay was built around. It pulls from the Resident Portal for instructions, from Compliance for the lease record, and settles into Finance.",

@@ -9,7 +9,7 @@ export const residentPortal: ProductPageData = {
   },
   problem: {
     headline: "Residents in Shared Ownership are largely in the dark.",
-    body: "Residents are unsure what they own, what they pay, what they can afford, or how to instruct a change. They call, email, and chase. HAs answer the same questions for years and still hold a fragmented picture of each resident. The Resident Portal gives residents one trusted place to manage their home, and gives the HA a clean, live record of everyone in their portfolio.",
+    body: "Residents are unsure what they own, what they pay, what they can afford, or how to instruct a change. They call, email, and chase. Housing Associations answer the same questions for years and still hold a fragmented picture of each resident. The Resident Portal gives residents one trusted place to manage their home, and gives the Housing Association a clean, live record of everyone in their portfolio.",
   },
   features: {
     headline: "Two sides, one record.",
@@ -39,7 +39,7 @@ export const residentPortal: ProductPageData = {
     { label: "INBOUND CALLS DEFLECTED", value: "[verify]%" },
   ],
   diagramBrief:
-    "Two-sided composition: resident phone frame on one side, HA dashboard on the other, with three labelled arrows — instruction → case, document → record, status → notification.",
+    "Two-sided composition: resident phone frame on one side, Housing Association dashboard on the other, with three labelled arrows — instruction → case, document → record, status → notification.",
   fitsWith: {
     headline: "Where the Resident Portal sits in the platform.",
     body: "Every instruction the resident makes lands in the case workflow that runs on Aftersales, Compliance, and Finance — with the document trail already attached.",

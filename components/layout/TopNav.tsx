@@ -23,7 +23,6 @@ const LEGAL_LINKS = [
 ];
 
 const NAV_LINKS = [
-  { href: "/company", label: "Company", match: /^\/company/ },
   { href: "/blog", label: "Resources", match: /^\/blog|^\/resources/ },
 ];
 

@@ -31,7 +31,7 @@ export const compliance: ProductPageData = {
       template: "cards",
       headline: "Surface portfolio risk at unit level — before it blocks a sale",
       intro:
-        "Most HAs only discover a short lease, a defective clause, or a missing EWS1 when conveyancing on a resale grinds to a halt. Stairpay surfaces these risks at unit level across the entire SO portfolio, continuously, so you fix the problem in the months before resale rather than the weeks during it.",
+        "Most Housing Associations only discover a short lease, a defective clause, or a missing EWS1 when conveyancing on a resale grinds to a halt. Stairpay surfaces these risks at unit level across the entire SO portfolio, continuously, so you fix the problem in the months before resale rather than the weeks during it.",
       detail:
         "Every lease, building safety document, and management pack you ingest is parsed and structured. Stairpay then runs continuous checks across the unit-level register — flagging short leases, expiring EPCs, missing EWS1s, defective clauses, and lender-protection gaps as soon as the data shows them, not when a buyer's solicitor finds them.",
       cards: [

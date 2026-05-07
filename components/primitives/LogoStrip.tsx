@@ -6,6 +6,7 @@ type Logo = { name: string; src?: string };
 
 type LogoStripProps = {
   intro?: string;
+  introHighlight?: string;
   logos: Logo[];
 };
 
@@ -80,10 +81,21 @@ function CycleCell({ items, startIdx, delayMs }: { items: Logo[]; startIdx: numb
   );
 }
 
-export function LogoStrip({ intro, logos }: LogoStripProps) {
+export function LogoStrip({ intro, introHighlight, logos }: LogoStripProps) {
   return (
     <div className="mx-auto w-full max-w-content px-section py-16">
-      {intro ? <p className="text-body-sm font-normal text-ink-light">{intro}:</p> : null}
+      {intro ? (
+        <p className="text-center text-body-md font-normal text-ink-light">
+          {intro}
+          {introHighlight ? (
+            <>
+              {" "}
+              <span className="font-medium">{introHighlight}</span>
+            </>
+          ) : null}
+          :
+        </p>
+      ) : null}
       <div className="mt-6 grid grid-cols-2 gap-px overflow-hidden border border-rule bg-rule sm:grid-cols-3 md:grid-cols-5">
         {Array.from({ length: VISIBLE_CELLS }, (_, i) => (
           <div key={i} className="flex h-24 items-center justify-center bg-paper px-4">

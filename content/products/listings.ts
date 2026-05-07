@@ -10,7 +10,7 @@ export const listings: ProductPageData = {
   problem: {
     headline:
       "Initial sales run across portal admin, an inbox, and a spreadsheet of applicants.",
-    body: "Most HAs run initial sales across portal admin tools, an inbox, a spreadsheet of applicants, and a separate system for affordability. Leads get lost between them, eligibility is checked manually, and nobody can tell you the real conversion rate from enquiry to reservation. Stairpay closes the loop — one record per applicant, from the portal listing to first-tranche completion.",
+    body: "Most Housing Associations run initial sales across portal admin tools, an inbox, a spreadsheet of applicants, and a separate system for affordability. Leads get lost between them, eligibility is checked manually, and nobody can tell you the real conversion rate from enquiry to reservation. Stairpay closes the loop — one record per applicant, from the portal listing to first-tranche completion.",
   },
   outcomes: [
     {
@@ -31,7 +31,7 @@ export const listings: ProductPageData = {
       template: "cards",
       headline: "List once, sell everywhere",
       intro:
-        "Push a Shared Ownership listing to Rightmove, Zoopla, Share to Buy, and the HA's own website from a single record in Stairpay. Update once, propagate everywhere.",
+        "Push a Shared Ownership listing to Rightmove, Zoopla, Share to Buy, and the Housing Association's own website from a single record in Stairpay. Update once, propagate everywhere.",
       detail:
         "When a development goes live, Stairpay creates the listing record once. Each portal pulls from that record, so a price change, status update, or new photo set updates everywhere within minutes. Health checks flag any portal where syndication has drifted, before a buyer sees a stale listing.",
       cards: [
@@ -59,7 +59,7 @@ export const listings: ProductPageData = {
             "First-time buyer status",
             "Existing homeowner status",
             "Military priority",
-            "Custom HA-defined rules",
+            "Custom Housing Association-defined rules",
           ],
         },
         {
@@ -79,7 +79,7 @@ export const listings: ProductPageData = {
       template: "workflow",
       headline: "One case, every party, no chasing",
       intro:
-        "A Shared Ownership case touches the HA sales team, two solicitors, a broker, a surveyor, and the buyer. Stairpay gives all of them access to the same case record — each seeing what they need, contributing what they own — and chases automatically when anyone falls behind.",
+        "A Shared Ownership case touches the Housing Association sales team, two solicitors, a broker, a surveyor, and the buyer. Stairpay gives all of them access to the same case record — each seeing what they need, contributing what they own — and chases automatically when anyone falls behind.",
       steps: [
         {
           heading: "Reservation lands",

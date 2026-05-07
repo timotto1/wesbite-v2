@@ -32,7 +32,7 @@ export function Pillars({ headline, items }: PillarsProps) {
               <Reveal key={p.title} delay={120 + i * 160}>
                 <Link
                   href={href}
-                  className="flex h-full flex-col rounded-[28px] bg-white p-10 transition-transform duration-700 ease-out has-[.pillar-cta:hover]:scale-[1.015]"
+                  className="flex h-full flex-col rounded-card bg-white p-10 transition-transform duration-700 ease-out has-[.pillar-cta:hover]:scale-[1.015]"
                 >
                   <Icon />
                   <p className="mt-6 text-heading-lg font-medium tracking-tight text-ink">

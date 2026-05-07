@@ -24,6 +24,7 @@ export default function LandingPage() {
 
       <LogoStrip
         intro={landing.logoStrip.intro}
+        introHighlight={landing.logoStrip.introHighlight}
         logos={landing.logoStrip.logos}
       />
 

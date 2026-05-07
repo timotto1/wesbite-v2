@@ -40,7 +40,7 @@ const FEATURES: FeatureSpec[] = [
     orbitIdx: 0,
     corner: "ne",
     title: "Regulator-ready by default.",
-    body: "One source of truth, audited end to end — the answers the regulator wants are already in the platform.",
+    body: "One source of truth, audited end to end. The answers the regulator wants are already in the platform.",
   },
   // i=1 NE area  →  Resident Cost clarity
   {
@@ -76,7 +76,7 @@ const FEATURES: FeatureSpec[] = [
     orbitIdx: 4,
     corner: "sw",
     title: "Forecasts you can trust.",
-    body: "Asset and resident data combined in one model — not stitched together from spreadsheets the night before a board meeting.",
+    body: "Asset and resident data combined in one model. No stitching together from spreadsheets the night before a board meeting.",
   },
   // i=5 SW area  →  Resident Documents
   {
@@ -94,7 +94,7 @@ const FEATURES: FeatureSpec[] = [
     orbitIdx: 6,
     corner: "nw",
     title: "Affordability tracking.",
-    body: "Understand what you can afford to staircase, and when, without paying for advice you don't yet need.",
+    body: "Understand what you can afford to staircase, and plan your future with confidence.",
   },
   // i=7 NW area  →  HA Case management
   {

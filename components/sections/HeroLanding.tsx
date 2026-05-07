@@ -32,14 +32,15 @@ export function HeroLanding({
           {stat ? (
             <Reveal>
               <p className="text-body-sm text-ink">
-                <span className="relative inline-block tabular-nums">
+                <span className="font-medium text-ink">1 in </span>
+                <span className="relative inline-block font-medium tabular-nums text-ink">
                   <span aria-hidden className="invisible">
                     {stat.value}
                   </span>
                   <CountUp
                     value={stat.value}
                     from={1}
-                    duration={1800}
+                    duration={4000}
                     className="absolute inset-0 text-left"
                   />
                 </span>{" "}

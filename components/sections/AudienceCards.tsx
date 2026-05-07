@@ -24,7 +24,7 @@ const CARDS: AudienceCard[] = [
     features: [
       {
         title: "Regulator-ready by default.",
-        body: "One source of truth, audited end to end — the answers the regulator wants are already in the platform.",
+        body: "One source of truth, audited end to end. The answers the regulator wants are already in the platform.",
       },
       {
         title: "Less time on admin, more time on residents.",
@@ -32,7 +32,7 @@ const CARDS: AudienceCard[] = [
       },
       {
         title: "Forecasts you can trust.",
-        body: "Asset and resident data combined in one model — not stitched together from spreadsheets the night before a board meeting.",
+        body: "Asset and resident data combined in one model. No stitching together from spreadsheets the night before a board meeting.",
       },
       {
         title: "Cases close faster.",
@@ -61,7 +61,7 @@ const CARDS: AudienceCard[] = [
       },
       {
         title: "Affordability tracking.",
-        body: "Understand what you can afford to staircase, and when, without paying for advice you don't yet need.",
+        body: "Understand what you can afford to staircase, and plan your future with confidence.",
       },
     ],
   },

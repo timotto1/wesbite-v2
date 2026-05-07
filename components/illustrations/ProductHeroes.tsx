@@ -95,7 +95,7 @@ export function ResidentPortalHero() {
         <g transform="translate(420 360)">
           <rect x="-2" y="-2" width="316" height="156" rx="14" fill="#1A1A1F" opacity="0.04" />
           <rect width="312" height="152" rx="12" fill="#FFFFFF" stroke="#26045D" />
-          <text x="20" y="34" fontFamily={FONT} fontSize="11" letterSpacing="2" fill="#26045D">LANDS IN HA WORKFLOW</text>
+          <text x="20" y="34" fontFamily={FONT} fontSize="11" letterSpacing="2" fill="#26045D">LANDS IN HOUSING ASSOCIATION WORKFLOW</text>
           <text x="20" y="64" fontFamily={FONT} fontSize="20" fontWeight="500" fill="#1A1A1F">Case opened automatically</text>
           <text x="20" y="86" fontFamily={FONT} fontSize="12" fill="#5C5C66">Affordability already on file</text>
           <text x="20" y="104" fontFamily={FONT} fontSize="12" fill="#5C5C66">Lease terms attached · ready to triage</text>
@@ -310,7 +310,7 @@ export function AftersalesHero() {
 
         {/* Party rows */}
         <g transform="translate(48 280)">
-          {["HA team", "Resident", "Solicitor", "Valuer", "Mortgage broker"].map((name, i) => (
+          {["Housing Association team", "Resident", "Solicitor", "Valuer", "Mortgage broker"].map((name, i) => (
             <g key={name} transform={`translate(0 ${i * 44})`}>
               <text x="0" y="14" fontFamily={FONT} fontSize="11" fill="#9094A0">{name}</text>
               <line x1="120" y1="10" x2="704" y2="10" stroke="#F2F2EC" />
