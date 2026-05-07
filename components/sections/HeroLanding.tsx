@@ -1,6 +1,7 @@
 import { CTAButton } from "@/components/primitives/CTAButton";
 import { EyebrowLabel } from "@/components/primitives/EyebrowLabel";
 import { Reveal } from "@/components/animation/Reveal";
+import { CountUp } from "@/components/animation/CountUp";
 import type { HeroStagedProps } from "@/lib/types";
 
 export function HeroLanding({
@@ -31,8 +32,18 @@ export function HeroLanding({
           {stat ? (
             <Reveal>
               <p className="text-body-sm text-ink">
-                {stat.label}{" "}
-                <span className="text-ink-light">{stat.value}</span>
+                <span className="relative inline-block tabular-nums">
+                  <span aria-hidden className="invisible">
+                    {stat.value}
+                  </span>
+                  <CountUp
+                    value={stat.value}
+                    from={1}
+                    duration={1800}
+                    className="absolute inset-0 text-left"
+                  />
+                </span>{" "}
+                <span className="text-ink-light">{stat.label}</span>
               </p>
             </Reveal>
           ) : null}

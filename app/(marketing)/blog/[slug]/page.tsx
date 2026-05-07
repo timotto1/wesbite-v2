@@ -70,6 +70,15 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           <hr className="mt-6 border-0 border-t border-rule" />
         </header>
 
+        {post.frontmatter.image ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={post.frontmatter.image}
+            alt={post.frontmatter.title}
+            className="mt-8 w-full rounded-[24px] object-cover"
+          />
+        ) : null}
+
         <div className="mt-8">
           <MDXRemote source={post.content} components={mdxComponents} />
         </div>

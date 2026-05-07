@@ -14,24 +14,24 @@ export default function BlogIndex() {
   const rest = posts.filter((p) => p.slug !== featured?.slug);
 
   return (
-    <section className="mx-auto w-full max-w-page px-16 py-16 md:px-40 md:py-24 lg:px-56">
-      <h1 className="text-heading-xl !font-medium tracking-tight text-ink md:text-display-lg">
-        Latest
+    <section className="mx-auto w-full max-w-page px-16 pb-16 pt-16 md:px-40 md:pb-24 md:pt-16 lg:px-56">
+      <h1 className="text-heading-xl font-semibold tracking-tight text-ink">
+        Latest news
       </h1>
 
       {featured ? (
         <Link
           href={`/blog/${featured.slug}`}
-          className="group mt-10 block overflow-hidden rounded-[28px] bg-white transition-transform duration-700 ease-out hover:scale-[1.005]"
+          className="group mt-4 block overflow-hidden rounded-[48px] bg-white shadow-[0_1px_2px_rgba(16,12,40,0.02),0_8px_24px_-12px_rgba(16,12,40,0.04),inset_0_1px_0_rgba(255,255,255,0.5)] ring-1 ring-black/[0.025] transition-transform duration-700 ease-out hover:scale-[1.005]"
         >
-          <div className="grid min-h-[420px] grid-cols-1 md:min-h-[480px] md:grid-cols-[1.4fr_1fr]">
+          <div className="grid min-h-[320px] grid-cols-1 md:min-h-[360px] md:grid-cols-[1.4fr_1fr]">
             <ArticleImage post={featured} variant="featured" />
             <div className="flex flex-col justify-center gap-5 px-10 py-8">
               <div>
                 <p className="text-eyebrow uppercase text-ink-muted">
                   {featured.frontmatter.category}
                 </p>
-                <p className="mt-4 text-heading-lg font-semibold tracking-tight text-ink">
+                <p className="mt-4 text-heading-xl font-semibold tracking-tight text-ink">
                   {featured.frontmatter.title}
                 </p>
               </div>
@@ -59,7 +59,7 @@ function ArticleCard({ post }: { post: Post }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group flex flex-col overflow-hidden rounded-[28px] bg-white transition-transform duration-700 ease-out hover:scale-[1.005]"
+      className="group flex flex-col overflow-hidden rounded-[48px] bg-white shadow-[0_1px_2px_rgba(16,12,40,0.02),0_8px_24px_-12px_rgba(16,12,40,0.04),inset_0_1px_0_rgba(255,255,255,0.5)] ring-1 ring-black/[0.025] transition-transform duration-700 ease-out hover:scale-[1.005]"
     >
       <ArticleImage post={post} variant="card" />
       <div className="flex flex-col gap-5 px-10 py-8">

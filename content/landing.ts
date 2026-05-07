@@ -1,8 +1,8 @@
 export const landing = {
   hero: {
-    stat: { label: "National SO using Stairpay:", value: "33%" },
+    stat: { label: "of Shared Ownership homes use Stairpay", value: "33%" },
     headline: "The operating system for shared ownership",
-    sub: "One platform for every Housing Association workflow — connected directly to your residents",
+    sub: "One platform for every Housing Association workflow — connected directly to your residents.",
     primaryCta: { label: "Contact sales", href: "/demo" },
     secondaryCta: { label: "Log in", href: "/login" },
   },

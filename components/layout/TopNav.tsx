@@ -77,12 +77,14 @@ export function TopNav() {
             isDarkHero ? "text-white" : "text-ink"
           }`}
         >
-          <span
+          <svg
             aria-hidden
-            className={`h-2 w-2 rounded-[2px] ${
-              isDarkHero ? "bg-white" : "bg-stairpay"
-            }`}
-          />
+            viewBox="0 0 48 48"
+            className="h-[18px] w-[18px]"
+            fill={isDarkHero ? "#FFFFFF" : "#26045D"}
+          >
+            <path d="M48 24 L48 47.5 A0.5 0.5 0 0 1 47.5 48 L0.5 48 A0.5 0.5 0 0 1 0 47.5 L0 32.5 A0.5 0.5 0 0 1 0.5 32 L15.5 32 A0.5 0.5 0 0 0 16 31.5 L16 16.5 A0.5 0.5 0 0 1 16.5 16 L31.5 16 A0.5 0.5 0 0 0 32 15.5 L32 0.5 A0.5 0.5 0 0 1 32.5 0 L47.5 0 A0.5 0.5 0 0 1 48 0.5 L48 24 Z" />
+          </svg>
           stairpay
         </Link>
 
