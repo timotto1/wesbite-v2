@@ -106,19 +106,24 @@ export function DonutChart({
   const r = size / 2 - thickness / 2;
   const cx = size / 2;
   const cy = size / 2;
-  let acc = -Math.PI / 2;
-  const arcs = data.map((d) => {
-    const ang = (d.value / total) * Math.PI * 2;
-    const a0 = acc;
-    const a1 = acc + ang;
-    acc = a1;
-    const x0 = cx + r * Math.cos(a0);
-    const y0 = cy + r * Math.sin(a0);
-    const x1 = cx + r * Math.cos(a1);
-    const y1 = cy + r * Math.sin(a1);
-    const large = ang > Math.PI ? 1 : 0;
-    return { ...d, path: `M ${x0} ${y0} A ${r} ${r} 0 ${large} 1 ${x1} ${y1}` };
-  });
+  const { arcs } = data.reduce<{
+    acc: number;
+    arcs: (DonutDatum & { path: string })[];
+  }>(
+    (state, d) => {
+      const ang = (d.value / total) * Math.PI * 2;
+      const a0 = state.acc;
+      const a1 = a0 + ang;
+      const x0 = cx + r * Math.cos(a0);
+      const y0 = cy + r * Math.sin(a0);
+      const x1 = cx + r * Math.cos(a1);
+      const y1 = cy + r * Math.sin(a1);
+      const large = ang > Math.PI ? 1 : 0;
+      const path = `M ${x0} ${y0} A ${r} ${r} 0 ${large} 1 ${x1} ${y1}`;
+      return { acc: a1, arcs: [...state.arcs, { ...d, path }] };
+    },
+    { acc: -Math.PI / 2, arcs: [] },
+  );
   return (
     <svg width={size} height={size} style={{ display: "block" }}>
       {arcs.map((a, i) => (

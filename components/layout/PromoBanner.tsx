@@ -45,6 +45,8 @@ function BannerAnimation() {
     ).matches;
 
     if (reduceMotion) {
+      // Skip the slide + colour-fade sequence; show the settled state.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSlidIn(true);
       setShowGrey(true);
       return;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { Reveal } from "@/components/animation/Reveal";
 
@@ -62,13 +62,15 @@ export function OnePlatformCarousel({ activeSlug }: OnePlatformCarouselProps) {
     MODULES.findIndex((m) => m.slug === activeSlug),
   );
   const [active, setActive] = useState(initialIndex);
+  const [prevSlug, setPrevSlug] = useState(activeSlug);
 
   // Keep the active card in sync if the page-provided slug changes
   // (e.g., during client-side route transitions).
-  useEffect(() => {
+  if (prevSlug !== activeSlug) {
+    setPrevSlug(activeSlug);
     const idx = MODULES.findIndex((m) => m.slug === activeSlug);
     if (idx >= 0) setActive(idx);
-  }, [activeSlug]);
+  }
 
   return (
     <section

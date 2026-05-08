@@ -14,10 +14,14 @@ import {
   ListingsHero,
   ResidentPortalHero,
   CommsHero,
-  ComplianceHero,
   FinanceHero,
   AftersalesHero,
 } from "@/components/illustrations/ProductHeroes";
+import { ComplianceHero } from "@/components/illustrations/ComplianceHero";
+import { ComplianceFeature1 } from "@/components/illustrations/ComplianceFeature1";
+import { ComplianceFeature2 } from "@/components/illustrations/ComplianceFeature2";
+import { ComplianceFeature3 } from "@/components/illustrations/ComplianceFeature3";
+import { ComplianceFeature4 } from "@/components/illustrations/ComplianceFeature4";
 import {
   ListingsDiagram,
   ResidentPortalDiagram,
@@ -27,18 +31,25 @@ import {
   AftersalesDiagram,
 } from "@/components/illustrations/ProductDiagrams";
 import {
-  StagedFeatSyndication,
-  StagedFeatEligibility,
-  StagedFeatCaseManagement,
-  StagedFeatVelocity,
-} from "@/components/illustrations/staged/StagedListings";
+  ComplianceFeatureBackground,
+  ListingsFeature1,
+  ListingsFeature2,
+} from "@/components/illustrations/ProductHeroes";
+import { ListingsFeature3 } from "@/components/illustrations/ListingsFeature3";
+import { ListingsFeature4 } from "@/components/illustrations/ListingsFeature4";
 
 const FEATURE_ILLUSTRATIONS: Record<string, React.ReactNode[]> = {
   listings: [
-    <StagedFeatSyndication key="syndication" />,
-    <StagedFeatEligibility key="eligibility" />,
-    <StagedFeatCaseManagement key="case" />,
-    <StagedFeatVelocity key="velocity" />,
+    <ListingsFeature1 key="syndication" />,
+    <ListingsFeature2 key="eligibility" />,
+    <ListingsFeature3 key="case" />,
+    <ListingsFeature4 key="velocity" />,
+  ],
+  compliance: [
+    <ComplianceFeature1 key="compliance-1" />,
+    <ComplianceFeature2 key="compliance-2" />,
+    <ComplianceFeature3 key="compliance-3" />,
+    <ComplianceFeature4 key="compliance-4" />,
   ],
 };
 
@@ -64,11 +75,12 @@ export function generateStaticParams() {
   return productSlugs.map((slug) => ({ slug }));
 }
 
-export function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Metadata {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ slug: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const product = products[params.slug];
   if (!product) return {};
   return {
@@ -77,7 +89,8 @@ export function generateMetadata({
   };
 }
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
+export default async function ProductPage(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const product = products[params.slug];
   if (!product) notFound();
 
@@ -137,7 +150,6 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
           <FinalCTA
             headline={`See ${product.name} in your workflow.`}
-            sub="30-minute demo. We'll show you the platform with your own workflows in mind."
             primaryCta={{ label: "Contact sales", href: "/demo" }}
           />
         </>

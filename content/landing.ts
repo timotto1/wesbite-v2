@@ -278,7 +278,7 @@ export const landing = {
     ],
   },
   finalCta: {
-    headline: "Ready to run Shared Ownership properly?",
+    headline: "The future of Shared Ownership",
     sub: "30-minute demo. We'll show you the platform with your own workflows in mind.",
     primaryCta: { label: "Contact sales", href: "/demo" },
   },

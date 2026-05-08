@@ -4,7 +4,8 @@ import { forwardRef, useEffect, useRef, useState } from "react";
 import { useContactPanel } from "./ContactPanelContext";
 
 const BOOK_A_CALL_HREF =
-  process.env.NEXT_PUBLIC_BOOK_A_CALL_URL ?? "https://calendly.com/stairpay";
+  process.env.NEXT_PUBLIC_BOOK_A_CALL_URL ??
+  "https://meetings-eu1.hubspot.com/meetings/floris-ten-nijenhuis/contact-sales";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -15,8 +16,20 @@ export function ContactPanel() {
 
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
-  const formRef = useRef<HTMLFormElement>(null);
+  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
   const firstFieldRef = useRef<HTMLInputElement>(null);
+
+  // Reset form state when the panel re-opens after a successful submission.
+  // Render-body state-from-prop pattern; runs before commit so no extra render.
+  // The <form> below unmounts on success and remounts when we go back to idle,
+  // so its DOM inputs reset automatically.
+  if (prevIsOpen !== isOpen) {
+    setPrevIsOpen(isOpen);
+    if (isOpen && status === "success") {
+      setStatus("idle");
+      setError(null);
+    }
+  }
 
   // Lock body scroll + close on Escape while open.
   useEffect(() => {
@@ -34,16 +47,6 @@ export function ContactPanel() {
       clearTimeout(t);
     };
   }, [isOpen, close]);
-
-  // Reset form state when the panel re-opens after a successful submission.
-  useEffect(() => {
-    if (isOpen && status === "success") {
-      setStatus("idle");
-      setError(null);
-      formRef.current?.reset();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -158,7 +161,7 @@ export function ContactPanel() {
               </p>
             </div>
           ) : (
-            <form ref={formRef} onSubmit={handleSubmit} className="mt-8 space-y-5" noValidate>
+            <form onSubmit={handleSubmit} className="mt-8 space-y-5" noValidate>
               <Field
                 ref={firstFieldRef}
                 label="Name"

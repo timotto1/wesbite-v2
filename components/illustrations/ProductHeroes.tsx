@@ -1,10 +1,38 @@
 import { IllustrationFrame } from "./IllustrationFrame";
-import { StagedListingsHero } from "./staged/StagedListings";
 
 const FONT = "Poppins, system-ui, sans-serif";
 
 export function ListingsHero() {
-  return <StagedListingsHero />;
+  return (
+    /* eslint-disable-next-line @next/next/no-img-element */
+    <img
+      src="/images/listings/hero.png"
+      alt="Listings — sample listing record in Stairpay"
+      className="block h-auto w-full"
+    />
+  );
+}
+
+export function ListingsFeature1() {
+  return (
+    /* eslint-disable-next-line @next/next/no-img-element */
+    <img
+      src="/images/listings/feature-1.png"
+      alt="List once, sell everywhere — multi-portal syndication"
+      className="block h-auto w-full"
+    />
+  );
+}
+
+export function ListingsFeature2() {
+  return (
+    /* eslint-disable-next-line @next/next/no-img-element */
+    <img
+      src="/images/listings/feature-2.png"
+      alt="Eligibility, identity, and AML — handled before reservation"
+      className="block h-auto w-full"
+    />
+  );
 }
 
 /* Resident Portal — phone hero with affordability ring + structured tiles */
@@ -109,53 +137,15 @@ export function CommsHero() {
   );
 }
 
-/* Compliance — PDF on left, structured fields on right */
-export function ComplianceHero() {
+export function ComplianceFeatureBackground() {
   return (
-    <IllustrationFrame aspect="4-3" tone="panel">
-      <svg viewBox="0 0 800 600" className="absolute inset-0 h-full w-full" role="img" aria-label="Lease PDF parsed into structured compliance fields">
-        {/* PDF */}
-        <g transform="translate(60 80)">
-          <rect width="240" height="320" rx="6" fill="#FFFFFF" stroke="#E5E5DD" />
-          <text x="20" y="36" fontFamily={FONT} fontSize="9" letterSpacing="1.5" fill="#9094A0">LEASE · 12 BIRCH LANE</text>
-          {Array.from({ length: 16 }).map((_, i) => (
-            <rect key={i} x="20" y={56 + i * 16} width={i % 4 === 3 ? 140 : 200} height="6" rx="2" fill="#E5E5DD" />
-          ))}
-          <rect x="20" y="304" width="100" height="6" rx="2" fill="#9094A0" />
-        </g>
-
-        {/* Connecting flow */}
-        <g fill="none" stroke="#26045D" strokeWidth="1.25" markerEnd="url(#extract-arrow)">
-          <defs>
-            <marker id="extract-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
-              <path d="M0,0 L0,10 L9,5 z" fill="#26045D" />
-            </marker>
-          </defs>
-          <path d="M310,160 C380,160 380,180 440,180" className="dash-flow" />
-          <path d="M310,220 C380,220 380,260 440,260" className="dash-flow" />
-          <path d="M310,280 C380,280 380,340 440,340" className="dash-flow" />
-        </g>
-
-        {/* Structured fields */}
-        <g transform="translate(440 100)">
-          {[
-            { label: "LEASE LENGTH", value: "78 years remaining", confidence: 96 },
-            { label: "GROUND RENT", value: "£250 / yr · doubling 2030", confidence: 92 },
-            { label: "STAIRCASING CAP", value: "Up to 100%", confidence: 98 },
-            { label: "FORFEITURE TRIGGER", value: "Rent arrears > 30 days", confidence: 92 },
-          ].map((row, i) => (
-            <g key={row.label} transform={`translate(0 ${i * 80})`}>
-              <rect width="280" height="68" rx="10" fill="#FFFFFF" stroke={i === 3 ? "#26045D" : "#E5E5DD"} />
-              <text x="14" y="22" fontFamily={FONT} fontSize="10" letterSpacing="1.5" fill="#9094A0">{row.label}</text>
-              <text x="14" y="42" fontFamily={FONT} fontSize="13" fontWeight="500" fill="#1A1A1F">{row.value}</text>
-              <rect x="14" y="52" width="120" height="4" rx="2" fill="#F0EBF8" />
-              <rect x="14" y="52" width={row.confidence * 1.2} height="4" rx="2" fill={i === 3 ? "#26045D" : "#5C5C66"} />
-              <text x="142" y="56" fontFamily={FONT} fontSize="10" fill={i === 3 ? "#26045D" : "#9094A0"}>{row.confidence}%</text>
-            </g>
-          ))}
-        </g>
-      </svg>
-    </IllustrationFrame>
+    /* eslint-disable-next-line @next/next/no-img-element */
+    <img
+      src="/images/compliance/background-gradient.png"
+      alt=""
+      aria-hidden
+      className="block h-auto w-full rounded-[25px]"
+    />
   );
 }
 

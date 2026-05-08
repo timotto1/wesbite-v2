@@ -61,7 +61,6 @@ export default function LandingPage() {
 
       <FinalCTA
         headline={landing.finalCta.headline}
-        sub={landing.finalCta.sub}
         primaryCta={landing.finalCta.primaryCta}
       />
     </>

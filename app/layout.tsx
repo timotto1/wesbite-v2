@@ -35,9 +35,6 @@ export const metadata: Metadata = {
     title: `${siteName} — ${siteTagline}`,
     description,
   },
-  icons: {
-    icon: [{ url: "/favicon.ico" }],
-  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -23,10 +23,7 @@ function MetricCell({ metric, index }: { metric: Metric; index: number }) {
 
   useEffect(() => {
     const node = ref.current;
-    if (!node || typeof IntersectionObserver === "undefined") {
-      setShown(true);
-      return;
-    }
+    if (!node) return;
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -81,11 +78,7 @@ function AnimatedNumber({
   );
 
   useEffect(() => {
-    if (!active) return;
-    if (!Number.isFinite(numeric)) {
-      setDisplay(value);
-      return;
-    }
+    if (!active || !Number.isFinite(numeric)) return;
     const start = performance.now() + delay;
     const duration = 1200;
     let raf = 0;

@@ -16,11 +16,12 @@ export function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
 }
 
-export function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Metadata {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ slug: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const post = getPostBySlug(params.slug);
   if (!post) return {};
   return {
@@ -29,7 +30,8 @@ export function generateMetadata({
   };
 }
 
-export default function PostPage({ params }: { params: { slug: string } }) {
+export default async function PostPage(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const post = getPostBySlug(params.slug);
   if (!post) notFound();
 
@@ -72,11 +74,11 @@ export default function PostPage({ params }: { params: { slug: string } }) {
 
         {post.frontmatter.image ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img
+          (<img
             src={post.frontmatter.image}
             alt={post.frontmatter.title}
             className="mt-8 w-full rounded-[24px] object-cover"
-          />
+          />)
         ) : null}
 
         <div className="mt-8">
@@ -88,7 +90,6 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           </p>
         </article>
       </div>
-
       {related ? (
         <section className="mx-auto w-full max-w-[720px] px-section pb-12">
           <div className="rounded-card border-hairline border-rule bg-paper-card p-8">
@@ -107,10 +108,8 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           </div>
         </section>
       ) : null}
-
       <FinalCTA
-        headline="Ready to run Shared Ownership properly?"
-        sub="30-minute demo. We'll show you the platform with your own workflows in mind."
+        headline="The future of Shared Ownership"
         primaryCta={{ label: "Contact sales", href: "/demo" }}
       />
     </>

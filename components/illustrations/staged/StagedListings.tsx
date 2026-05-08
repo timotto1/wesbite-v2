@@ -472,21 +472,32 @@ export function StagedFeatVelocity() {
   const cx = 80;
   const cy = 80;
   const sw = 22;
-  let acc = 0;
-  const arcs = VELOCITY_SEGMENTS.map((s) => {
-    const start = (acc / 100) * Math.PI * 2 - Math.PI / 2;
-    acc += s.value;
-    const end = (acc / 100) * Math.PI * 2 - Math.PI / 2;
-    const large = s.value > 50 ? 1 : 0;
-    const x1 = cx + r * Math.cos(start);
-    const y1 = cy + r * Math.sin(start);
-    const x2 = cx + r * Math.cos(end);
-    const y2 = cy + r * Math.sin(end);
-    return {
-      d: `M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2}`,
-      color: s.color,
-    };
-  });
+  const { arcs } = VELOCITY_SEGMENTS.reduce<{
+    acc: number;
+    arcs: { d: string; color: string }[];
+  }>(
+    (state, s) => {
+      const start = (state.acc / 100) * Math.PI * 2 - Math.PI / 2;
+      const next = state.acc + s.value;
+      const end = (next / 100) * Math.PI * 2 - Math.PI / 2;
+      const large = s.value > 50 ? 1 : 0;
+      const x1 = cx + r * Math.cos(start);
+      const y1 = cy + r * Math.sin(start);
+      const x2 = cx + r * Math.cos(end);
+      const y2 = cy + r * Math.sin(end);
+      return {
+        acc: next,
+        arcs: [
+          ...state.arcs,
+          {
+            d: `M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2}`,
+            color: s.color,
+          },
+        ],
+      };
+    },
+    { acc: 0, arcs: [] },
+  );
 
   return (
     <StagedFrame>

@@ -37,10 +37,6 @@ export function CountUp({
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
-    if (typeof IntersectionObserver === "undefined") {
-      setStarted(true);
-      return;
-    }
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -63,6 +59,8 @@ export function CountUp({
       "(prefers-reduced-motion: reduce)"
     ).matches;
     if (reduceMotion) {
+      // Skip animation; jump straight to the final value.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCurrent(target);
       return;
     }

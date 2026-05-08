@@ -1,7 +1,7 @@
 "use client";
 
 import { Fragment, useLayoutEffect, useRef, useState } from "react";
-import type { PointerEvent as ReactPointerEvent } from "react";
+import type { JSX, PointerEvent as ReactPointerEvent } from "react";
 import "./styles.css";
 import { Icon, type IconKey } from "./icons";
 import {

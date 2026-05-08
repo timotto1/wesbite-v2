@@ -62,7 +62,7 @@ const isExternal = (href: string) => href.startsWith("http");
 
 export function Footer() {
   return (
-    <footer className="mt-32 bg-[#26045D] text-white">
+    <footer className="mt-32 bg-[#13022E] text-white">
       <div className="mx-auto w-full max-w-page px-section py-16">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           {COLUMNS.map((col) => (

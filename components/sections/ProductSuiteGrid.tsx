@@ -123,19 +123,17 @@ export function ProductSuiteGrid({ headline, headlineMuted, products }: ProductS
         </div>
       </div>
 
-      <ProductModal product={active} onClose={() => setActive(null)} />
+      {active ? (
+        <ProductModal key={active.slug} product={active} onClose={() => setActive(null)} />
+      ) : null}
     </section>
   );
 }
 
-function ProductModal({ product, onClose }: { product: Product | null; onClose: () => void }) {
+function ProductModal({ product, onClose }: { product: Product; onClose: () => void }) {
   const [shown, setShown] = useState(false);
 
   useEffect(() => {
-    if (!product) {
-      setShown(false);
-      return;
-    }
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
@@ -148,9 +146,7 @@ function ProductModal({ product, onClose }: { product: Product | null; onClose: 
       document.body.style.overflow = prevOverflow;
       cancelAnimationFrame(raf);
     };
-  }, [product, onClose]);
-
-  if (!product) return null;
+  }, [onClose]);
 
   return (
     <div
