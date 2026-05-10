@@ -140,7 +140,7 @@ function ResidentAppContent() {
 }
 
 /* ─── Status bar ─── */
-function StatusBar() {
+export function StatusBar() {
   return (
     <div className="flex h-[22px] items-center justify-between bg-[#1F0B56] px-3 text-[6px] font-semibold text-white">
       <span>9:09</span>
@@ -167,7 +167,7 @@ function StatusBar() {
 }
 
 /* ─── Top bar (avatar / logo / settings) ─── */
-function TopBar() {
+export function TopBar() {
   return (
     <div className="flex items-center justify-between px-3 pt-2 pb-1">
       <span className="inline-flex h-[18px] w-[18px] items-center justify-center rounded-full border border-[#A486F7] bg-white text-[7px] font-medium text-[#26045D]">
@@ -190,7 +190,7 @@ function TopBar() {
 }
 
 /* ─── CTA hero ─── */
-function CtaHero() {
+export function CtaHero() {
   return (
     <section
       className="relative overflow-hidden rounded-[12px] px-3 pb-3 pt-3 text-white shadow-[0_8px_18px_-8px_rgba(38,4,93,0.45)]"
@@ -236,7 +236,7 @@ function CtaHero() {
 }
 
 /* ─── 2x2 Stat grid ─── */
-function StatGrid() {
+export function StatGrid() {
   return (
     <section className="grid grid-cols-2 gap-2">
       <StatCard
@@ -648,7 +648,7 @@ function Chevron() {
 }
 
 /* ─── Bottom nav ─── */
-function BottomNav() {
+export function BottomNav() {
   return (
     <nav className="sticky bottom-0 mt-auto flex items-stretch justify-between border-t border-[#E3E2E4] bg-white px-1 pb-2 pt-1.5">
       <NavTab active label="Home">

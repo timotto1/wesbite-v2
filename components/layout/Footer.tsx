@@ -13,16 +13,6 @@ const COLUMNS = [
     ],
   },
   {
-    title: "Company",
-    links: [
-      { label: "About", href: "/company" },
-      { label: "Customers", href: "/customers" },
-      // Careers — hidden until we're hiring
-      // Press — hidden until we have coverage
-      { label: "Contact", href: "/company#contact" },
-    ],
-  },
-  {
     title: "Legal",
     links: [
       { label: "Privacy policy", href: "/privacy-policy" },

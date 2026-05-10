@@ -44,7 +44,7 @@ export type DiagramSectionProps = {
   layout: "diagram-right" | "diagram-below";
 };
 
-export type Metric = { label: string; value: string };
+export type Metric = { label: string; value: string; image?: string };
 
 export type Outcome = { heading: string; body?: string };
 

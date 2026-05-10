@@ -39,6 +39,51 @@ function MetricCell({ metric, index }: { metric: Metric; index: number }) {
     return () => observer.disconnect();
   }, []);
 
+  const transition = `opacity 700ms cubic-bezier(0.22,1,0.36,1) ${
+    index * 90
+  }ms, transform 700ms cubic-bezier(0.22,1,0.36,1) ${index * 90}ms`;
+
+  if (!metric.value && metric.image) {
+    return (
+      <div ref={ref} className="relative h-full overflow-hidden bg-paper-card">
+        <p
+          className="relative z-10 px-6 pt-8 text-center text-body-sm font-normal text-ink-muted"
+          style={{
+            opacity: shown ? 1 : 0,
+            transform: shown ? "translateY(0)" : "translateY(8px)",
+            transition,
+          }}
+        >
+          {metric.label}
+        </p>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={metric.image}
+          alt=""
+          aria-hidden
+          className="pointer-events-none absolute left-1/2 top-[58%] w-[88%] max-w-none -translate-x-1/2"
+        />
+      </div>
+    );
+  }
+
+  if (!metric.value) {
+    return (
+      <div ref={ref} className="bg-paper-card p-8">
+        <p
+          className="text-body-sm font-normal text-ink-muted"
+          style={{
+            opacity: shown ? 1 : 0,
+            transform: shown ? "translateY(0)" : "translateY(8px)",
+            transition,
+          }}
+        >
+          {metric.label}
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div ref={ref} className="bg-paper-card p-8">
       <p className="text-eyebrow uppercase text-ink-muted">{metric.label}</p>
@@ -47,9 +92,7 @@ function MetricCell({ metric, index }: { metric: Metric; index: number }) {
         style={{
           opacity: shown ? 1 : 0,
           transform: shown ? "translateY(0)" : "translateY(8px)",
-          transition: `opacity 700ms cubic-bezier(0.22,1,0.36,1) ${
-            index * 90
-          }ms, transform 700ms cubic-bezier(0.22,1,0.36,1) ${index * 90}ms`,
+          transition,
         }}
       >
         <AnimatedNumber value={metric.value} active={shown} delay={index * 90} />

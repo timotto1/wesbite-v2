@@ -29,11 +29,11 @@ export const aftersales: ProductPageData = {
   richFeatures: [
     {
       template: "cards",
-      headline: "Materially more staircasings, from the same residents",
+      headline: "Stairpay-run nurture",
       intro:
-        "Most Housing Associations sit on a list of shared owners and wait for them to call. Stairpay scores intent continuously and runs nurture against it, so the residents most ready to staircase get the right prompt at the right time — and they instruct through your team rather than drifting to a broker.",
+        "Automated comms — annual statements, equity progress reports, valuation prompts — tuned to where each resident sits in the staircasing journey. The right prompt lands at the right time without your team running campaigns by hand, so leaseholders instruct through you rather than drifting to a broker or sitting still.",
       detail:
-        "Every resident in your portfolio gets a propensity score that updates as their equity grows, as market and lender conditions shift, and as life events surface in your data. Stairpay runs the comms automatically — annual statements, equity progress, valuation prompts — tuned to where each resident sits. When a resident is ready, the instruction lands directly in your case manager.",
+        "Comms are sequenced off the propensity score and the resident's life-cycle events — newly past their first review window, equity past a stair-step threshold, rate change reshaping affordability. Each resident gets a tailored cadence; your team gets the instructions that fall out of it.",
       cards: [
         {
           heading: "Convert intent before brokers do",
@@ -47,10 +47,9 @@ export const aftersales: ProductPageData = {
     },
     {
       template: "checklist",
-      headline:
-        "A propensity score built from the signals that actually predict staircasing",
+      headline: "Continuous resident scoring",
       intro:
-        "Stairpay's per-resident propensity score isn't a single threshold — it's a continuously updated read of every signal that genuinely predicts a resident is ready to staircase. Equity progress, market and rate movements, and life-event triggers all roll into one score, so your team focuses nurture on the residents most likely to convert.",
+        "Equity progress, market triggers, lender-rate prompts, and life-event signals roll into a per-resident propensity score that updates automatically — so your team focuses nurture on the residents most likely to convert, not last quarter's static list.",
       columns: [
         {
           heading: "Resident & equity signals",
@@ -78,9 +77,9 @@ export const aftersales: ProductPageData = {
     },
     {
       template: "workflow",
-      headline: "Every case from instruction to completion, on one record",
+      headline: "End-to-end case management",
       intro:
-        "A staircasing case touches the resident, the Housing Association aftersales team, a RICS valuer, both solicitors, and often a mortgage broker. Stairpay runs the whole choreography on a single record — every party seeing what they need, every milestone timed, every chase automated.",
+        "Instruction → RICS valuation → solicitor → completion. Every party sees what they need on one record, every milestone has an SLA timer, and Stairpay chases the right party automatically when a timer slips.",
       steps: [
         {
           heading: "Instruction lands",
@@ -106,9 +105,9 @@ export const aftersales: ProductPageData = {
     },
     {
       template: "cards",
-      headline: "Pipeline and revenue MI for staircasing",
+      headline: "Pipeline and revenue MI",
       intro:
-        "A generic CRM shows you cases. Stairpay shows you the staircasing pipeline — cases by stage, days-in-stage, conversion rates, expected revenue, and where deals are leaking out before completion.",
+        "Cases by stage, days-in-stage, conversion rates, expected revenue, and leakage analysis — forecast staircasing revenue from real cases at real stages, and find the bottleneck before it costs the year.",
       cards: [
         {
           heading: "Forecast staircasing revenue with real numbers",
@@ -142,7 +141,11 @@ export const aftersales: ProductPageData = {
     { label: "CASES RUN / YEAR", value: "[verify]" },
     { label: "AVG. WEEKS TO COMPLETE", value: "6" },
     { label: "STAIRCASING UPLIFT", value: "[verify]%" },
-    { label: "AUTO-HANDLED CASE EVENTS", value: "[verify]%" },
+    {
+      label: "50+ structured datapoints per resident",
+      value: "",
+      image: "/images/aftersales/case-manager.png",
+    },
   ],
   diagramBrief:
     "Case-timeline diagram: instruction → KYC → valuation → solicitor → completion, with the Housing Association, resident, and third parties all reading from the same horizontal record. One purple highlight on the instruction node.",

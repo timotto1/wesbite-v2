@@ -62,8 +62,8 @@ const VIEW_FOR: Record<ViewId, { url: string; Component: () => JSX.Element }> = 
   compliance: { url: "/compliance", Component: ComplianceView },
 };
 
-export function ProductDemoWindow() {
-  const [active, setActive] = useState<ViewId>("case");
+export function ProductDemoWindow({ initialView = "insights" }: { initialView?: ViewId } = {}) {
+  const [active, setActive] = useState<ViewId>(initialView);
   const [hovered, setHovered] = useState<ViewId | null>(null);
   const [collapsed, setCollapsed] = useState(false);
   const mainRef = useRef<HTMLElement>(null);

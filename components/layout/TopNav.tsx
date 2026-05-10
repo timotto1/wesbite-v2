@@ -24,13 +24,13 @@ const LEGAL_LINKS = [
 
 const NAV_LINKS = [
   { href: "/blog", label: "Resources", match: /^\/blog|^\/resources/ },
+  { href: "/together-for-homes", label: "Together for Homes", match: /^\/together-for-homes/ },
 ];
 
 export function TopNav() {
   const pathname = usePathname() ?? "/";
   const router = useRouter();
   const productActive = pathname.startsWith("/products");
-  const isDarkHero = pathname === "/products/finance";
   const [platformOpen, setPlatformOpen] = useState(false);
   const [navigating, setNavigating] = useState(false);
 
@@ -60,11 +60,7 @@ export function TopNav() {
         }}
       />
     <header
-      className={`sticky top-0 z-50 ${
-        isDarkHero
-          ? "bg-white/10 backdrop-blur-md"
-          : "bg-white"
-      }`}
+      className="sticky top-0 z-50 bg-white"
       onMouseLeave={closePanel}
     >
       <nav className="mx-auto flex h-[56px] w-full max-w-page items-center px-section">
@@ -72,26 +68,20 @@ export function TopNav() {
           href="/"
           aria-label="Stairpay home"
           onMouseEnter={closePanel}
-          className={`flex items-center gap-2 font-sans text-[18px] font-semibold lowercase leading-none tracking-[-0.01em] transition-opacity duration-200 hover:opacity-80 ${
-            isDarkHero ? "text-white" : "text-ink"
-          }`}
+          className="flex items-center gap-2 font-sans text-[18px] font-semibold lowercase leading-none tracking-[-0.01em] text-ink transition-opacity duration-200 hover:opacity-80"
         >
           <svg
             aria-hidden
             viewBox="0 0 48 48"
             className="h-[18px] w-[18px]"
-            fill={isDarkHero ? "#FFFFFF" : "#26045D"}
+            fill="#26045D"
           >
             <path d="M48 24 L48 47.5 A0.5 0.5 0 0 1 47.5 48 L0.5 48 A0.5 0.5 0 0 1 0 47.5 L0 32.5 A0.5 0.5 0 0 1 0.5 32 L15.5 32 A0.5 0.5 0 0 0 16 31.5 L16 16.5 A0.5 0.5 0 0 1 16.5 16 L31.5 16 A0.5 0.5 0 0 0 32 15.5 L32 0.5 A0.5 0.5 0 0 1 32.5 0 L47.5 0 A0.5 0.5 0 0 1 48 0.5 L48 24 Z" />
           </svg>
           stairpay
         </Link>
 
-        <div
-          className={`ml-10 hidden items-center gap-7 text-body-sm font-light md:flex ${
-            isDarkHero ? "text-white/70" : "text-ink-muted"
-          }`}
-        >
+        <div className="ml-10 hidden items-center gap-7 text-body-sm font-light text-ink-muted md:flex">
           <button
             type="button"
             aria-haspopup="true"
@@ -99,9 +89,7 @@ export function TopNav() {
             onMouseEnter={() => setPlatformOpen(true)}
             onFocus={() => setPlatformOpen(true)}
             className={`flex items-center gap-1.5 transition-colors duration-200 ${
-              productActive || platformOpen
-                ? isDarkHero ? "text-white" : "text-ink"
-                : isDarkHero ? "hover:text-white" : "hover:text-ink"
+              productActive || platformOpen ? "text-ink" : "hover:text-ink"
             }`}
           >
             Platform
@@ -126,9 +114,7 @@ export function TopNav() {
                 aria-current={active ? "page" : undefined}
                 onMouseEnter={closePanel}
                 className={`relative transition-colors duration-200 ${
-                  active
-                    ? isDarkHero ? "text-white" : "text-ink"
-                    : isDarkHero ? "hover:text-white" : "hover:text-ink"
+                  active ? "text-ink" : "hover:text-ink"
                 }`}
               >
                 {l.label}
@@ -147,26 +133,8 @@ export function TopNav() {
           className="ml-auto flex items-center gap-3"
           onMouseEnter={closePanel}
         >
-          <CTAButton
-            variant="secondary"
-            href="/login"
-            label="Log in"
-            className={
-              isDarkHero
-                ? "!border-white !text-white hover:!bg-white hover:!text-ink"
-                : ""
-            }
-          />
-          <CTAButton
-            variant="primary"
-            href="/demo"
-            label="Contact sales"
-            className={
-              isDarkHero
-                ? "!border-white !bg-white !text-ink hover:!border-white hover:!bg-white/90 hover:!text-ink"
-                : ""
-            }
-          />
+          <CTAButton variant="secondary" href="/login" label="Log in" />
+          <CTAButton variant="primary" href="/demo" label="Contact sales" />
         </div>
       </nav>
 

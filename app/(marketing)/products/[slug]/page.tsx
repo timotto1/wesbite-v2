@@ -7,7 +7,7 @@ import { FinanceFullHero } from "@/components/sections/FinanceFullHero";
 import { CommsFullHero } from "@/components/sections/CommsFullHero";
 import { BenefitsRow } from "@/components/sections/BenefitsRow";
 import { ProductFeaturesSection } from "@/components/sections/ProductFeaturesSection";
-import { MetricsAnatomy } from "@/components/sections/MetricsAnatomy";
+import { AftersalesNumbersGrid } from "@/components/sections/AftersalesNumbersGrid";
 import { OnePlatformCarousel } from "@/components/sections/OnePlatformCarousel";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import {
@@ -37,6 +37,44 @@ import {
 } from "@/components/illustrations/ProductHeroes";
 import { ListingsFeature3 } from "@/components/illustrations/ListingsFeature3";
 import { ListingsFeature4 } from "@/components/illustrations/ListingsFeature4";
+import { ResidentPortalHeroPhone } from "@/components/illustrations/ResidentPortalHeroPhone";
+import {
+  ResidentChatIllustration,
+  ResidentProgressIllustration,
+  ResidentInstructionIllustration,
+  ResidentRecordIllustration,
+} from "@/components/illustrations/ResidentPortalFeatureIllustrations";
+import { AftersalesStaircaseChart } from "@/components/illustrations/AftersalesStaircaseChart";
+import { AftersalesNurtureNotifications } from "@/components/illustrations/AftersalesNurtureNotifications";
+import { AftersalesPipelineMI } from "@/components/illustrations/AftersalesPipelineMI";
+import { AftersalesPropensityScores } from "@/components/illustrations/AftersalesPropensityScores";
+
+const ResidentBackgroundPanel = () => (
+  <div
+    className="h-full w-full rounded-card bg-cover bg-center"
+    style={{
+      backgroundImage: "url('/images/resident/resident-portal-background.png')",
+    }}
+  />
+);
+
+const AftersalesCaseManagerPanel = () => (
+  <div
+    className="relative h-full w-full overflow-hidden rounded-card bg-cover bg-center"
+    style={{
+      backgroundImage: "url('/images/resident/resident-portal-background.png')",
+    }}
+  >
+    {/* Laptop scaled to fill the height — anchored to the left with a thin
+        gradient strip showing, right side cropped beyond the container. */}
+    {/* eslint-disable-next-line @next/next/no-img-element */}
+    <img
+      src="/images/aftersales/case-manager.png"
+      alt="Stairpay case management dashboard"
+      className="absolute -bottom-[10%] left-[6%] h-full w-auto max-w-none object-contain object-bottom drop-shadow-[0_30px_55px_rgba(38,4,93,0.30)]"
+    />
+  </div>
+);
 
 const FEATURE_ILLUSTRATIONS: Record<string, React.ReactNode[]> = {
   listings: [
@@ -51,15 +89,43 @@ const FEATURE_ILLUSTRATIONS: Record<string, React.ReactNode[]> = {
     <ComplianceFeature3 key="compliance-3" />,
     <ComplianceFeature4 key="compliance-4" />,
   ],
+  "resident-portal": [
+    <ResidentChatIllustration key="rp-chat" />,
+    <ResidentProgressIllustration key="rp-progress" />,
+    <ResidentInstructionIllustration key="rp-instruction" />,
+    <ResidentRecordIllustration key="rp-record" />,
+  ],
+  aftersales: [
+    <AftersalesNurtureNotifications key="as-1" />,
+    <AftersalesPropensityScores key="as-2" />,
+    <AftersalesCaseManagerPanel key="as-3" />,
+    <AftersalesPipelineMI key="as-4" />,
+  ],
 };
 
 const HEROES: Record<string, React.ReactNode> = {
   listings: <ListingsHero />,
-  "resident-portal": <ResidentPortalHero />,
+  "resident-portal": (
+    <div
+      className="relative aspect-[4/3] w-full overflow-hidden rounded-card bg-cover bg-center"
+      style={{
+        backgroundImage:
+          "url('/images/resident/resident-portal-background.png')",
+      }}
+    >
+      <div className="absolute inset-0 flex items-center justify-center">
+        <ResidentPortalHeroPhone />
+      </div>
+    </div>
+  ),
   comms: <CommsHero />,
   compliance: <ComplianceHero />,
   finance: <FinanceHero />,
-  aftersales: <AftersalesHero />,
+  aftersales: (
+    <div className="aspect-[5/4] w-full">
+      <AftersalesStaircaseChart />
+    </div>
+  ),
 };
 
 const DIAGRAMS: Record<string, React.ReactNode> = {
@@ -132,19 +198,7 @@ export default async function ProductPage(props: { params: Promise<{ slug: strin
             illustrations={FEATURE_ILLUSTRATIONS[product.slug]}
           />
 
-          {product.slug === "aftersales" && product.metrics.length ? (
-            <MetricsAnatomy
-              eyebrow="In production"
-              headline="The numbers behind it."
-              metrics={product.metrics as [
-                (typeof product.metrics)[number],
-                (typeof product.metrics)[number],
-                (typeof product.metrics)[number],
-                (typeof product.metrics)[number],
-              ]}
-              diagram={DIAGRAMS[product.slug]}
-            />
-          ) : null}
+          {product.slug === "aftersales" ? <AftersalesNumbersGrid /> : null}
 
           <OnePlatformCarousel activeSlug={product.slug} />
 

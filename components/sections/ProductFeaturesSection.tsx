@@ -79,7 +79,7 @@ export function ProductFeaturesSection({ features, illustrations }: ProductFeatu
 
         {/* Right: sticky illustration, cross-fades between features. */}
         <div className="hidden md:block">
-          <div className="sticky top-24 h-[70vh]">
+          <div className="sticky top-24 aspect-[4/3] w-full">
             <div className="relative flex h-full w-full items-center justify-center">
               {features.map((f, i) => {
                 const illustration = illustrations?.[i];
@@ -111,20 +111,20 @@ function FeatureContent({ feature }: { feature: FeatureLike }) {
   if (!isRichFeature(feature)) {
     return (
       <>
-        <h3 className="text-heading-md text-ink md:text-heading-lg">
+        <h3 className="max-w-3xl text-[24px] font-medium text-ink md:text-[30px]">
           {feature.leadPhrase}
         </h3>
-        <p className="mt-6 text-body-sm text-ink-muted">{feature.body}</p>
+        <p className="mt-6 text-[16px] text-ink-muted">{feature.body}</p>
       </>
     );
   }
 
   return (
     <>
-      <h3 className="text-heading-md text-ink md:text-heading-lg">
+      <h3 className="max-w-3xl text-[24px] font-medium text-ink md:text-[30px]">
         {feature.headline}
       </h3>
-      <p className="mt-6 text-body-sm text-ink-muted">{feature.intro}</p>
+      <p className="mt-6 text-[16px] text-ink-muted">{feature.intro}</p>
       {feature.template === "cards" ? (
         <CardsTemplate feature={feature} />
       ) : feature.template === "checklist" ? (
@@ -213,12 +213,12 @@ function WorkflowTemplate({
     <ol className="mt-8 flex flex-col gap-5">
       {feature.steps.map((s, i) => (
         <li key={s.heading} className="flex gap-4">
-          <span className="flex h-6 w-6 flex-none items-center justify-center rounded-full bg-stairpay text-[12px] font-medium text-paper">
+          <span className="flex h-6 w-6 flex-none items-center justify-center rounded-full bg-stairpay text-[13px] font-medium text-paper">
             {i + 1}
           </span>
           <div>
-            <h4 className="text-body-sm font-medium text-ink">{s.heading}</h4>
-            <p className="mt-1 text-[12px] leading-relaxed text-ink-muted">{s.body}</p>
+            <h4 className="text-[15px] font-medium text-ink">{s.heading}</h4>
+            <p className="mt-1 text-[14px] leading-relaxed text-ink-muted">{s.body}</p>
           </div>
         </li>
       ))}

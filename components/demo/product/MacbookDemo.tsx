@@ -2,7 +2,17 @@
 
 import { ProductDemoWindow } from "./ProductDemoWindow";
 
-export function MacbookDemo() {
+type ViewId =
+  | "case"
+  | "reporting"
+  | "insights"
+  | "listings"
+  | "enquiries"
+  | "units"
+  | "developments"
+  | "compliance";
+
+export function MacbookDemo({ initialView }: { initialView?: ViewId } = {}) {
   return (
     <div className="relative mx-auto w-[85%]" style={{ aspectRatio: "1216 / 735" }}>
       <img
@@ -28,7 +38,7 @@ export function MacbookDemo() {
             transformOrigin: "top left",
           }}
         >
-          <ProductDemoWindow />
+          <ProductDemoWindow initialView={initialView} />
         </div>
       </div>
     </div>

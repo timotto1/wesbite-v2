@@ -17,7 +17,6 @@ export const landing = {
       { name: "M&G", src: "/logos/grayscale/M&G_greyscale.png" },
       { name: "Places for People", src: "/logos/grayscale/Places_for_People__greyscale.png" },
       { name: "Bromford Flagship", src: "/logos/grayscale/Bromford_Flagship_Livewest_greyscale.png" },
-      { name: "Southern", src: "/logos/grayscale/Southern_greyscale.png" },
       { name: "MTVH", src: "/logos/grayscale/MTVH_greyscale.png" },
       { name: "Sage", src: "/logos/grayscale/Sage__greyscale.png" },
       { name: "GreenSquare Accord", src: "/logos/grayscale/greensquare_accord_greyscale.png" },

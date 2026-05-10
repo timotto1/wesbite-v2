@@ -3,49 +3,45 @@ title: "Plays well with your stack"
 category: "Platform"
 date: "2026-05-07"
 author: "Stairpay"
-dek: "How Stairpay integrates with the housing management, finance, document, identity, and comms tools Housing Associations already use — and the principles behind how we build those connections."
+dek: "How Stairpay integrates with the systems Housing Associations already use — and the principles behind how we build those connections."
 excerpt: "No rip-and-replace. The systems we connect to, how the data flows, and the rules we hold ourselves to."
 ---
 
-Housing Associations don't get to start from zero. There's a housing management system that's been in place for a decade, a finance team running on Sage or Oracle, a compliance lead living in DocuSign, and an identity stack that someone in IT spent two years getting right. Software that ignores all of that — that asks teams to "just move everything across" — never lands.
+Housing Associations don't start from zero. The HMS has been in place for a decade. The finance team has its ledger. Compliance lives in the document management system. Someone in IT spent years getting identity right. Software that asks teams to move everything across never lands.
 
-Stairpay was designed to slot in, not to replace. This piece sets out the systems we integrate with today, how the data flows, and the policies we apply to every connector we build.
+Stairpay was designed to slot in, not to replace.
 
-## Philosophy: integrate first, replace never
+## Integrate first, replace never
 
-Every piece of housing software claims to be the one source of truth. We don't. The HMS is the source of truth for tenancies. The finance system is the source of truth for the ledger. The DMS is the source of truth for the executed lease. Stairpay is the source of truth for what happens *between* those systems — the case, the milestones, the resident-facing journey.
+Every piece of housing software claims to be the one source of truth. We don't. The HMS is the source of truth for tenancies. The finance system is the source of truth for the ledger. The DMS is the source of truth for the executed lease. Stairpay is the source of truth for what happens *between* those systems — the case, the milestones, the resident journey.
 
-That framing changes how we build. Connectors aren't a tax we paid to be enterprise-ready; they're the product.
+Connectors aren't a tax we paid to be enterprise-ready. They're the product.
 
 ## What we integrate with today
 
-**Housing management systems.** MRI, Civica, Capita Open Housing, Aareon QL. Two-way for tenancy, contact, and unit data; read-only for ledger lines unless the HA explicitly opts in.
+**Housing management systems** — two-way for tenancy, contact, and unit data; read-only for ledger lines unless the HA explicitly opts in.
 
-**Finance and accounting.** Xero, Sage Intacct, Oracle Fusion. We push staircasing settlements, service-charge adjustments, and resale completions as journal entries against a chart of accounts the finance team controls.
+**Finance and accounting** — staircasing settlements, service-charge adjustments, and resale completions pushed as journal entries against a chart of accounts the finance team controls.
 
-**Document and e-signature.** DocuSign, Adobe Sign. Templates live in the DMS; Stairpay triggers envelopes, tracks status, and pulls executed copies back against the case.
+**Document management and e-signature** — templates live in the DMS; Stairpay triggers envelopes, tracks status, and pulls executed copies back against the case.
 
-**Identity and SSO.** Microsoft Entra, Okta, Google Workspace. SAML or OIDC, SCIM provisioning where the HA wants it. No long-lived service accounts on our side.
+**Identity and SSO** — SAML or OIDC, with SCIM provisioning where wanted. No long-lived service accounts on our side.
 
-**Comms.** Twilio for SMS, GOV.UK Notify for letters and emails where the HA prefers a sovereign sender. Outbound only — replies route to the HA's existing inbox.
+**Comms** — outbound SMS and letters via the HA's preferred sender. Replies route to the HA's existing inbox.
 
 ## How the data moves
 
-Every integration is governed by four rules:
+Four rules govern every integration:
 
-1. **Least privilege.** We ask for the narrowest scope that gets the job done. If a connector only needs to read tenancy records, it doesn't get write access to anything else.
-2. **Auditable both ways.** Every read and every write is logged with the actor, the timestamp, and the payload hash. HAs can pull that log at any time.
-3. **No silent transformations.** If we change the shape of data on the way through, the mapping is visible in the admin UI and version-controlled.
-4. **Backpressure on errors.** When an upstream system rejects a write, Stairpay holds the change and surfaces it for human review rather than retrying blindly or dropping it.
-
-## What we won't do
-
-We don't sell integration access to third parties. We don't aggregate cross-HA data into a "benchmark" product that quietly trains on tenancy records. We don't build connectors that scrape — every integration is via a sanctioned API or a documented file-drop pattern, and every credential is held by the HA.
-
-If a vendor doesn't offer an API, we say so plainly. We won't pretend a fragile screen-scrape is an integration.
+1. **Least privilege.** Connectors get the narrowest scope that does the job.
+2. **Auditable both ways.** Every read and write is logged with actor, timestamp, and payload hash, exportable at any time.
+3. **No silent transformations.** Mappings are visible in the admin UI and version-controlled.
+4. **Backpressure on errors.** When an upstream system rejects a write, Stairpay holds the change for human review rather than retrying blindly or dropping it.
 
 ## Building a new connector
 
 If your stack includes something we haven't listed, the path is short: a scoping call, a data-flow diagram signed off by your IT and DPO, and a sandbox build before anything touches production. Most net-new connectors land inside six weeks. The work is ours, not yours.
 
-The best housing software is the kind that the rest of your stack barely notices is there. That's the bar we hold ourselves to.
+The best housing software is the kind the rest of your stack barely notices is there. That's the bar we hold ourselves to.
+
+— Stairpay
