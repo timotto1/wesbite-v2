@@ -54,16 +54,12 @@ export function IntegrationsGrid({
 
           <div
             aria-hidden
-            className="mt-8 aspect-[4/3] w-full overflow-hidden rounded-card border border-dashed border-rule bg-paper-panel/60 md:mt-0 md:aspect-auto md:w-1/2 md:flex-none"
-          >
-            <div className="flex h-full w-full items-center justify-center">
-              <span className="text-eyebrow uppercase tracking-wider text-ink-light">
-                Integrations preview
-              </span>
-            </div>
-          </div>
+            className="mt-8 aspect-[4/3] w-full overflow-hidden rounded-card bg-paper-panel bg-cover bg-center md:mt-0 md:aspect-auto md:w-1/2 md:flex-none"
+            style={{ backgroundImage: "url('/images/integrations-hub.png')" }}
+          />
         </Link>
       </Reveal>
     </section>
   );
 }
+

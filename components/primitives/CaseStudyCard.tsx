@@ -48,20 +48,7 @@ export function CaseStudyCard({ haName, headlineResult, image, logo, href }: Cas
 
 function PlaceholderLogo({ name }: { name: string }) {
   return (
-    <span className="inline-flex items-center gap-2 text-white">
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-        aria-hidden
-      >
-        <path d="M3 19 L12 5 L21 19" />
-        <path d="M8 19 L12 12 L16 19" />
-      </svg>
+    <span className="inline-flex items-center text-white">
       <span className="text-[12px] font-semibold uppercase tracking-[0.2em]">{name}</span>
     </span>
   );
